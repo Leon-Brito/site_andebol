@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - ACO</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f4f4f4; display: flex; align-items: center; justify-content: center; height: 100vh; }
+        .login-card { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 100%; max-width: 400px; }
+        .btn-custom { background-color: #198754; color: white; }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <div class="text-center mb-4">
+            <img src="../img/logo_9JToiDZ.png" alt="Logo" width="80"> <h4 class="mt-2">Área de Sócio</h4>
+        </div>
+
+        <form id="loginForm" onsubmit="fazerLogin(event)">
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" id="email" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input type="password" id="password" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-custom w-100">Entrar</button>
+            <p id="msgErro" class="text-danger text-center mt-3" style="display:none;"></p>
+        </form>
+        <div class="text-center mt-3">
+            <a href="/" class="text-secondary small">Voltar ao site</a>
+        </div>
+    </div>
+
+   <script>
+        async function fazerLogin(e) {
+            e.preventDefault(); 
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const msgErro = document.getElementById('msgErro');
+
+            // REMOVI A LINHA DO 'tipoUtilizador' QUE DAVA ERRO AQUI
+
+            // Limpa mensagens anteriores
+            msgErro.style.display = 'none';
+            msgErro.innerText = '';
+
+            try {
+                const res = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await res.json();
+
+                if (data.sucesso) {
+                    
+                    // Guardar no localStorage
+                    localStorage.setItem('utilizador', JSON.stringify(data.utilizador));
+
+                    // VERIFICAÇÃO DE ADMIN
+                    if (data.utilizador.tipo === 'admin') {
+                        // Se no server.js tens: app.get('/admin', ...)
+                        window.location.href = '/admin'; 
+                    } else {
+                        // Se no server.js tens: app.get('/convocatoria', ...)
+                        window.location.href = 'index.html'; 
+                    }
+
+                } else {
+                    msgErro.innerText = data.mensagem || "Dados incorretos.";
+                    msgErro.style.display = 'block';
+                }
+
+            } catch (error) {
+                console.error(error);
+                msgErro.innerText = "Erro ao ligar ao servidor.";
+                msgErro.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

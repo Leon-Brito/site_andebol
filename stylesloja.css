@@ -1,0 +1,244 @@
+/* ============================== VARIÁVEIS DE NÚCLEOS E DIMENSÕES ================================ */
+:root {
+    --brand-color-primary: #3f7a4a;
+    --brand-color-primary-darker-1: #356437;
+    --brand-color-secondary: #3f7a4a;
+    --badge-width: 90px;
+    --badge-height: 90px;
+}
+
+/* ================================= RESET E BASE ================================== */
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, figure {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #fff;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ================================= CABEÇALHO ================================= */
+#header {
+    padding: 1rem 0;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+#branding .club-badge img {
+    width: var(--badge-width);
+    height: var(--badge-height);
+    object-fit: contain;
+}
+
+#header .club-name {
+    color: var(--brand-color-primary);
+}
+
+#header .site-slogan {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.socialmedia_icons a {
+    color: var(--brand-color-primary);
+    transition: 0.3s;
+}
+
+.socialmedia_icons a:hover {
+    color: var(--brand-color-primary-darker-1);
+}
+
+/* ================================== BARRA DE NAVEGAÇÃO =================================== */
+.navbar.bg-success {
+    background-color: var(--brand-color-primary) !important;
+}
+
+.navbar .nav-link,
+.navbar .navbar-brand {
+    color: #fff !important;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+    color: #e0e0e0 !important;
+}
+
+/* ================================== CONTEÚDO PRINCIPAL =================================== */
+main {
+    padding: 2rem 0;
+}
+#page_title {
+    text-align: center;
+    padding: 1rem 0;
+}
+
+/* ================================= PRODUTOS ==================================== */
+.products-app .products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: flex-start;
+}
+
+.products-app .products article {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s;
+    background-color: #fff;
+    flex: 1 1 calc(25% - 1.5rem);
+    max-width: calc(25% - 1.5rem);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding-bottom: 0.5rem;
+}
+
+.products-app .products article:hover {
+    transform: translateY(-5px);
+}
+
+.products-app .products article a.thumbnail {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* empurra caption pro final */
+    align-items: center;
+    height: 100%;
+    text-decoration: none;
+}
+
+.products-app .products .thumbnail img {
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.caption {
+    padding: 0.5rem 0.75rem 0 0.75rem;
+    width: 100%;
+    text-decoration: none;
+}
+
+.form-check{
+    color: #333;
+}
+.caption a {
+    color: #356437;
+    text-decoration: none;
+}
+.caption .item-title {
+    color: #356437;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    text-decoration: none;
+    
+}
+.caption1 .item-title {
+    color: #356437;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    text-decoration: none;
+    
+}
+.caption1 a {
+    color: #356437;
+    text-decoration: none;
+}
+
+.caption .product-price {
+    color: var(--brand-color-primary);
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+}
+.caption1 .product-price {
+    color: var(--brand-color-primary);
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+}
+
+.product-stock {
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: #356437;
+    text-decoration: none;
+}
+
+.product-stock i {
+    font-size: 0.6rem;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+}
+
+.product-stock.available i {
+    background-color: green;
+}
+
+.product-stock.limited i, .product-stock.limitado i {
+    background-color: orange;
+}
+#btn-envi{
+    background-color: #356437;
+}
+/* =================================== FORMULÁRIO ================================== */
+.contacts_form {
+    background: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.contacts_form h4 {
+    color: var(--brand-color-primary);
+    margin-bottom: 1rem;
+}
+
+.contacts_form .form-label {
+    font-weight: 500;
+}
+
+.contacts_form .form-text {
+    font-size: 0.85rem;
+    color: #666;
+}
+.contacts_form .form-check-input{
+    border-color: #333;
+}
+
+/* CAPTCHA */
+.captcha {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+/* =================================== RODAPÉ ================================== */
+
+/* ================================== RESPONSIVIDADE ================================== */
+@media (max-width: 992px) {
+    .products-app .products article {
+        flex: 1 1 calc(50% - 1rem);
+        max-width: calc(50% - 1rem);
+    }
+}
+
+@media (max-width: 768px) {
+    .products-app .products article {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Financeiro</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); /* Azul Profissional */
+            height: 100vh; margin: 0; display: flex; justify-content: center; align-items: center;
+        }
+        .login-card {
+            background: white; padding: 40px; border-radius: 10px; width: 100%; max-width: 350px;
+            text-align: center; box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        h2 { color: #333; margin-bottom: 5px; }
+        p { color: #777; font-size: 0.9em; margin-bottom: 25px; }
+        
+        input {
+            width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd;
+            border-radius: 6px; box-sizing: border-box; font-size: 16px;
+        }
+        button {
+            width: 100%; padding: 12px; background-color: #28a745; /* Verde Dinheiro */
+            color: white; border: none; border-radius: 6px; font-size: 16px;
+            font-weight: bold; cursor: pointer; margin-top: 15px; transition: 0.3s;
+        }
+        button:hover { background-color: #218838; }
+        .erro { color: red; font-size: 0.9em; margin-top: 15px; display: none; }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <div style="font-size: 3rem; margin-bottom: 10px;">💶</div>
+        <h2>Área Financeira</h2>
+        <p>Consulte as suas faturas e recibos</p>
+        
+        <input type="email" id="email" placeholder="Email do Associado">
+        <input type="password" id="senha" placeholder="Senha">
+        
+        <button onclick="entrar()">Aceder aos Recibos</button>
+        <div id="msgErro" class="erro">Dados incorretos!</div>
+    </div>
+
+    <script>
+        async function entrar() {
+            const email = document.getElementById('email').value;
+            const senha = document.getElementById('senha').value;
+            const msgErro = document.getElementById('msgErro');
+
+            try {
+                // Reutilizamos a mesma API de login, pois a senha é a mesma
+                const res = await fetch('/api/login', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ email, senha })
+                });
+                
+                const data = await res.json();
+
+                if (data.sucesso) {
+                    localStorage.setItem('utilizador', JSON.stringify(data.utilizador));
+                    // REDIRECIONA PARA A PÁGINA SÓ DE FATURAS
+                    window.location.href = '/minhas-faturas'; 
+                } else {
+                    msgErro.style.display = 'block';
+                    msgErro.innerText = data.erro;
+                }
+            } catch (e) {
+                msgErro.innerText = "Erro de conexão.";
+                msgErro.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

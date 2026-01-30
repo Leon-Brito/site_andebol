@@ -1,0 +1,305 @@
+/* ============================== VARIÁVEIS DE NÚCLEOS E DIMENSÕES ================================ */
+:root {
+    --brand-color-primary: #3f7a4a;
+    --brand-color-primary-darker-1: #356437;
+    --brand-color-secondary: #3f7a4a;
+    --badge-width: 90px;
+    --badge-height: 90px;
+}
+
+/* ================================= RESET E BASE ================================== */
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, figure {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #fff;
+}
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Container principal ocupa espaço restante */
+#content, #page-content {
+  flex: 1 0 auto; /* ocupa espaço restante */
+  display: flex;
+  flex-direction: column; /* garante que filhos fiquem empilhados */
+}
+
+/* Limpar floats existentes nos filhos */
+#content #content-main,
+#content #page-content.with-sidebar,
+#content #sidebar,
+#content #content-sidebar,
+#content #content-half-sidebar {
+  float: none; /* remove floats para o Flex funcionar */
+  width: 100%; /* ocupa toda a largura */
+}
+
+/* Footer fixo na base */
+footer#footer {
+  flex-shrink: 0;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ================================= CABEÇALHO ================================= */
+#header {
+    padding: 1rem 0;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+#branding .club-badge img {
+    width: var(--badge-width);
+    height: var(--badge-height);
+    object-fit: contain;
+}
+
+#header .club-name {
+    color: var(--brand-color-primary);
+}
+
+#header .site-slogan {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.socialmedia_icons a {
+    color: var(--brand-color-primary);
+    transition: 0.3s;
+}
+.icons{
+    font-size: 1.5rem;
+}
+
+.socialmedia_icons a:hover {
+    color: var(--brand-color-primary-darker-1);
+}
+
+/* ================================== BARRA DE NAVEGAÇÃO =================================== */
+.navbar.bg-success {
+    background-color: var(--brand-color-primary) !important;
+}
+
+.navbar .nav-link,
+.navbar .navbar-brand {
+    color: #fff !important;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+    color: #e0e0e0 !important;
+}
+.page-header{
+    color:#333;
+}
+.block-title{
+    color:#356437
+}
+/* Adicione esta regra ao seu CSS */
+.wrapper, .pages-app {
+    background-color: #ffffff;
+}
+#btn-envi{
+    background-color: #356437;
+}
+#content {
+    background-color: #fff;
+    padding-bottom: 60px;
+    padding-top: 40px;
+    /* FIX: Força o contentor a englobar os floats */
+    overflow: hidden; 
+}
+
+#content #page-content {
+    position: relative;
+    float: left;
+    width: 100%;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px
+}
+
+#content #page-content.with-sidebar {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px
+}
+
+@media(min-width: 992px) {
+    #content #page-content.with-sidebar {
+        float:left;
+        width: 66.6666666667%
+    }
+}
+
+#content #sidebar {
+    position: relative;
+    float: left;
+    width: 100%;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px
+}
+
+@media(min-width: 992px) {
+    #content #sidebar {
+        float:left;
+        width: 33.3333333333%
+    }
+}
+
+#content #content-bottom,#content #content-top,#content #content-featured {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    clear: both
+}
+
+@media(min-width: 768px) {
+    #content #content-bottom,#content #content-top,#content #content-featured {
+        float:left;
+        width: 100%
+    }
+}
+
+#content #content-main {
+    position: relative;
+    float: left;
+    width: 100%;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px
+}
+
+#content #content-main.with-sidebar {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px
+}
+
+@media(min-width: 768px) {
+    #content #content-main.with-sidebar {
+        float:left;
+        width: 66.6666666667%
+    }
+}
+
+#content #content-main.with-sidebars {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px
+}
+
+@media(min-width: 992px) {
+    #content #content-main.with-sidebars {
+        float:left;
+        width: 50%
+    }
+}
+
+#content #content-main.with-half-sidebar {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px
+}
+
+@media(min-width: 992px) {
+    #content #content-main.with-half-sidebar {
+        float:left;
+        width: 50%
+    }
+}
+
+#content #content-sidebar {
+    position: relative;
+    float: left;
+    width: 100%;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px
+}
+
+@media(min-width: 768px) {
+    #content #content-sidebar {
+        float:left;
+        width: 33.3333333333%
+    }
+}
+
+#content #content-half-sidebar {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px
+}
+
+@media(min-width: 992px) {
+    #content #content-half-sidebar {
+        float:left;
+        width: 50%
+    }
+}
+
+#content #content-sidebar1,#content #content-sidebar2 {
+    position: relative;
+    float: left;
+    width: 100%;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px
+}
+
+@media(min-width: 768px) {
+    #content #content-sidebar1,#content #content-sidebar2 {
+        float:left;
+        width: 50%
+    }
+}
+
+@media(min-width: 992px) {
+    #content #content-sidebar1,#content #content-sidebar2 {
+        float:left;
+        width: 25%
+    }
+}
+
+#content #content-top {
+    margin-bottom: 35px
+}
+
+#content #content-bottom {
+    margin-top: 35px
+}

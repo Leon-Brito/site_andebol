@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Admin - Andebol Clube Olhão</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #f4f6f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Ajustes do Header */
+        .header1 { background: white; border-bottom: 1px solid #ddd; }
+        .club-name { color: #198754; font-weight: bold; }
+        .site-slogan { color: #666; font-size: 0.6em; }
+        .socialmedia_icons a { color: #198754; text-decoration: none; transition: 0.3s; }
+        .socialmedia_icons a:hover { color: #0f5132; }
+
+        /* Estilo do Dashboard */
+        .admin-header-bar {
+            background-color: #fff;
+            padding: 15px 0;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+            margin-bottom: 2rem;
+            transition: transform 0.2s;
+        }
+
+        .card-header {
+            background-color: #fff;
+            border-bottom: 1px solid #f0f0f0;
+            font-weight: bold;
+            color: #198754; /* Verde do clube */
+            padding: 1rem 1.25rem;
+            border-top-left-radius: 10px !important;
+            border-top-right-radius: 10px !important;
+        }
+
+        /* NOVO: Estilo para o cartão de apagar (Perigo) */
+        .card-header-danger {
+            color: #dc3545 !important;
+            background-color: #fff0f0;
+            border-bottom: 1px solid #ffcccc;
+        }
+        .btn-danger-custom {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+        }
+        .btn-danger-custom:hover {
+            background-color: #bb2d3b;
+            color: white;
+        }
+
+        .form-label {
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .checkbox-group {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #dee2e6;
+        }
+
+        .btn-custom-primary {
+            background-color: #198754;
+            color: white;
+        }
+        .btn-custom-primary:hover {
+            background-color: #146c43;
+            color: white;
+        }
+
+        /* Ajuste para o select multiple */
+        #selectJogadoresConvocados {
+            min-height: 120px;
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header" class="header1">
+        <div id="header-content" class="container d-flex justify-content-between align-items-center py-2">
+            <div id="branding" class="d-flex align-items-center">
+                <div class="club-badge me-3">
+                    <a href="#"><img src="../img/logo_9JToiDZ.png" alt="logo" width="70" height="70"></a>
+                </div>
+                <h2 class="club-name mb-0 h4">
+                    Andebol Clube Olhão
+                    <span class="site-slogan d-block small">#maisqueumclube</span>
+                </h2>
+            </div>
+            <aside class="template-block socialmedia_icons">
+                <div class="icons d-flex gap-3 fs-5">
+                    <a href="https://www.facebook.com/AndebolClubeOlhao/" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/andebol_clube_olhao/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@andebolclubeolhao" target="_blank"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </aside>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-success mt-0">
+            <div class="container">
+                <a class="navbar-brand d-lg-none" href="#">Menu</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div id="mainNav" class="collapse navbar-collapse">
+                    <ul class="navbar-nav me-auto" id="menuPrincipal">
+                        <li class="nav-item"><a href="../index.html" class="nav-link">Início</a></li>
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Clube</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="historiaaco.html">História</a></li>
+                                <li><a class="dropdown-item" href="mensagempr.html">Mensagem do Presidente</a></li>
+                                <li><a class="dropdown-item" href="Estrutura-desportiva.html">Estrutura desportiva</a></li>
+                                <li><a class="dropdown-item" href="historia.html">Cidade de Olhão</a></li>
+                                <li><a class="dropdown-item" href="contactos.html">Contatos</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="sociosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Sócios</a>
+                            <ul class="dropdown-menu" aria-labelledby="sociosDropdown">
+                                <li><a class="dropdown-item" href="../novo-socio.html">Novo Sócio</a></li>
+                                <li><a class="dropdown-item" href="financeiro.html">Financeiro</a></li>
+                                <li><a class="dropdown-item" href="convocatoria.html">Convocatória</a></li>
+                            </ul>
+                        </li>
+                         <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="equipasDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Equipas</a>
+                            <ul class="dropdown-menu" aria-labelledby="equipasDropdown">
+                                <li><a class="dropdown-item" href="equipas/sub18.html">Sub-18 Masculino</a></li>
+                                <li><a class="dropdown-item" href="equipas/sub16.html">Sub-16 Masculino</a></li>
+                                <li><a class="dropdown-item" href="equipas/sub14.html">Sub-14 Masculino</a></li>
+                                <li><a class="dropdown-item" href="equipas/sub12.html">Minis Masculino</a></li>
+                                <li><a class="dropdown-item" href="equipas/minisf.html">Minis Feminino</a></li>
+                                <li><a class="dropdown-item" href="equipas/bambis.html">Bambis Masculino</a></li>
+                                <li><a class="dropdown-item" href="equipas/bambis.html">Bambis Feminino</a></li>
+                                <li><a class="dropdown-item" href="equipas/manitas.html">Manitas Masculino</a></li>
+                                <li><a class="dropdown-item" href="equipas/manitas.html">Manitas Feminino</a></li>
+                                <li><a class="dropdown-item" href="equipas/baby.html">Baby</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a href="noticias.html" class="nav-link">Notícias</a></li>
+                        <li class="nav-item"><a href="../loja.html" class="nav-link">Loja</a></li>
+                    </ul>
+                    
+                    <div class="d-flex">
+                         <button onclick="sair()" class="btn btn-outline-light btn-sm">
+                            <i class="fas fa-sign-out-alt"></i> Sair
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container mt-4">
+        
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="h3 text-gray-800"><i class="fas fa-cogs"></i> Painel de Administração</h1>
+            <span class="badge bg-secondary">Acesso Reservado</span>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-header d-flex align-items-center">
+                        <i class="fas fa-user-plus me-2"></i> Novo Utilizador
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-2">
+                            <div class="col-md-6">
+                                <label class="form-label">Nome</label>
+                                <input type="text" id="novoNome" class="form-control" placeholder="Nome completo">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Email</label>
+                                <input type="email" id="novoEmail" class="form-control" placeholder="Email">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Senha</label>
+                                <input type="password" id="novoSenha" class="form-control" placeholder="Senha segura">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">NIF</label>
+                                <input type="text" id="novoNif" class="form-control" placeholder="NIF">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Morada</label>
+                                <input type="text" id="novaMorada" class="form-control" placeholder="Morada completa">
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label">Tipo de Utilizador</label>
+                                <select id="novoTipo" class="form-select" onchange="toggleEscaloes()">
+                                    <option value="jogador">Jogador (Atleta)</option>
+                                    <option value="admin">Administrador</option>
+                                </select>
+                            </div>
+                            
+                            <div class="col-12 mt-3" id="areaEscaloes">
+                                <label class="form-label mb-2">Escalões Associados:</label>
+                                <div class="checkbox-group d-flex flex-wrap gap-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input chk" type="checkbox" value="Sub-12" id="chk12">
+                                        <label class="form-check-label" for="chk12">Sub-12</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input chk" type="checkbox" value="Sub-14" id="chk14">
+                                        <label class="form-check-label" for="chk14">Sub-14</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input chk" type="checkbox" value="Sub-16" id="chk16">
+                                        <label class="form-check-label" for="chk16">Sub-16</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input chk" type="checkbox" value="Sub-18" id="chk18">
+                                        <label class="form-check-label" for="chk18">Sub-18</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12 mt-3">
+                                <button onclick="criarUtilizador()" class="btn btn-custom-primary w-100">
+                                    <i class="fas fa-save"></i> Criar Utilizador
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-header d-flex align-items-center">
+                        <i class="fas fa-calendar-alt me-2"></i> Nova Convocatória
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-2">
+                            <div class="col-md-8">
+                                <label class="form-label">Adversário</label>
+                                <input type="text" id="adversario" class="form-control" placeholder="Nome da equipa">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Escalão</label>
+                                <select id="selectEscalaoJogo" class="form-select" onchange="carregarJogadoresPorEscalao()">
+                                    <option value="">-- Escolher --</option>
+                                    <option value="Sub-12">Sub-12</option>
+                                    <option value="Sub-14">Sub-14</option>
+                                    <option value="Sub-16">Sub-16</option>
+                                    <option value="Sub-18">Sub-18</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Data e Hora</label>
+                                <input type="datetime-local" id="dataJogo" class="form-control">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Local</label>
+                                <input type="text" id="localJogo" class="form-control" placeholder="Pavilhão...">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Selecione os Jogadores (Ctrl + Clique)</label>
+                                <select id="selectJogadoresConvocados" class="form-select" multiple>
+                                    </select>
+                                <small class="text-muted">Selecione o escalão acima para carregar a lista.</small>
+                            </div>
+                            <div class="col-12 mt-3">
+                                <button onclick="fazerConvocatoria()" class="btn btn-warning w-100 text-dark fw-bold">
+                                    <i class="fas fa-paper-plane"></i> Lançar Convocatória
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+
+            <div class="col-12 mb-4">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center">
+                        <i class="fas fa-file-invoice-dollar me-2"></i> Emitir Fatura / Recibo
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-4">
+                            <div class="col-lg-5 border-end">
+                                <h6 class="text-muted mb-3">Dados do Atleta</h6>
+                                <div class="mb-3">
+                                    <label class="form-label">Selecionar Atleta</label>
+                                    <select id="fatSelectJogador" class="form-select" onchange="preencherDadosJogador()">
+                                    </select>
+                                </div>
+                                <div class="row g-2">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Nº Recibo</label>
+                                        <input type="text" id="fatRecibo" class="form-control" placeholder="Ex: 2024/001">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Data Emissão</label>
+                                        <input type="date" id="fatDataEmissao" class="form-control">
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">NIF</label>
+                                        <input type="text" id="fatNif" class="form-control bg-light" readonly>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Morada</label>
+                                        <input type="text" id="fatMorada" class="form-control bg-light" readonly>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-7">
+                                <h6 class="text-muted mb-3">Detalhes do Pagamento</h6>
+                                <div class="mb-3">
+                                    <label class="form-label">Descrição</label>
+                                    <input type="text" id="fatDescricao" class="form-control" placeholder="Ex: Mensalidade Outubro">
+                                </div>
+                                
+                                <div class="row g-2 mb-3">
+                                    <div class="col-md-4">
+                                        <label class="form-label">Valor Base (€)</label>
+                                        <input type="number" id="fatBase" class="form-control" placeholder="0.00" oninput="calcTotal()">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">IVA (€)</label>
+                                        <input type="number" id="fatIva" class="form-control" placeholder="0.00" oninput="calcTotal()">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Desconto (€)</label>
+                                        <input type="number" id="fatDesc" class="form-control text-danger" placeholder="0.00" oninput="calcTotal()">
+                                    </div>
+                                </div>
+
+                                <div class="alert alert-success d-flex justify-content-between align-items-center">
+                                    <strong>TOTAL A PAGAR:</strong>
+                                    <div class="input-group w-50">
+                                        <span class="input-group-text">€</span>
+                                        <input type="number" id="fatTotal" class="form-control fw-bold fs-5 text-end text-success" readonly value="0.00">
+                                    </div>
+                                </div>
+
+                                <div class="row g-2">
+                                    <div class="col-md-4">
+                                        <label class="form-label">Data Pagamento</label>
+                                        <input type="date" id="fatDataPag" class="form-control">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Método</label>
+                                        <select id="fatMetodo" class="form-select">
+                                            <option value="Transferencia Bancaria">Transferência</option>
+                                            <option value="Dinheiro">Dinheiro</option>
+                                            <option value="MBWAY">MBWay</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Nota (Opcional)</label>
+                                        <input type="text" id="fatNota" class="form-control" placeholder="Obs...">
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 text-end">
+                                    <button onclick="lancarFatura()" class="btn btn-success btn-lg px-5">
+                                        <i class="fas fa-check-circle"></i> Emitir Fatura
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 mb-4">
+                <div class="card border-danger">
+                    <div class="card-header card-header-danger d-flex align-items-center">
+                        <i class="fas fa-user-minus me-2"></i> Remover Utilizador
+                    </div>
+                    <div class="card-body">
+                        <div class="row align-items-end">
+                            <div class="col-md-8">
+                                <label class="form-label text-danger">Selecione o utilizador para apagar permanentemente:</label>
+                                <select id="selectApagarUser" class="form-select border-danger">
+                                    <option value="">-- Carregando lista... --</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 mt-3 mt-md-0">
+                                <button onclick="apagarUtilizador()" class="btn btn-danger-custom w-100">
+                                    <i class="fas fa-trash-alt"></i> Apagar Utilizador
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mt-2 text-muted small">
+                            <i class="fas fa-exclamation-triangle"></i> Atenção: Esta ação não pode ser desfeita. Todos os dados associados a este utilizador serão perdidos.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        function sair() { 
+            localStorage.removeItem('utilizador'); 
+            window.location.href = 'login.html'; 
+        }
+        let listaJogadores = [];
+        
+        async function init() {
+            try {
+                const res = await fetch('/api/jogadores-completo');
+                listaJogadores = await res.json();
+                atualizarDropdowns();
+            } catch (error) {
+                console.error("Erro ao carregar jogadores:", error);
+                // Caso falhe o fetch (para teste visual apenas)
+                if(listaJogadores.length === 0) {
+                     listaJogadores = [
+                         {id: 1, nome: "João Silva", nif: "123456789", morada: "Olhão"},
+                         {id: 2, nome: "Maria Santos", nif: "987654321", morada: "Faro"}
+                     ];
+                     atualizarDropdowns();
+                }
+            }
+        }
+        
+        function atualizarDropdowns() {
+            // Dropdown Faturas
+            const selFat = document.getElementById('fatSelectJogador');
+            selFat.innerHTML = '<option value="">-- Selecione Jogador --</option>';
+            listaJogadores.forEach(u => selFat.innerHTML += `<option value="${u.id}">${u.nome}</option>`);
+
+            // Dropdown Apagar
+            const selDel = document.getElementById('selectApagarUser');
+            selDel.innerHTML = '<option value="">-- Selecione para APAGAR --</option>';
+            listaJogadores.forEach(u => selDel.innerHTML += `<option value="${u.id}">${u.nome} (NIF: ${u.nif || 'N/A'})</option>`);
+        }
+
+        init();
+
+        function toggleEscaloes() {
+            document.getElementById('areaEscaloes').style.display = (document.getElementById('novoTipo').value === 'jogador') ? 'block' : 'none';
+        }
+
+        async function criarUtilizador() {
+            const escaloes = Array.from(document.querySelectorAll('.chk:checked')).map(c => c.value);
+            const dados = {
+                nome: document.getElementById('novoNome').value,
+                email: document.getElementById('novoEmail').value,
+                senha: document.getElementById('novoSenha').value,
+                nif: document.getElementById('novoNif').value,
+                morada: document.getElementById('novaMorada').value,
+                tipo: document.getElementById('novoTipo').value,
+                escaloes: escaloes
+            };
+            
+            try {
+                const res = await fetch('/api/criar-utilizador', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(dados)});
+                const json = await res.json();
+                alert(json.mensagem || "Operação realizada");
+                init(); // Recarrega lista
+            } catch (error) {
+                alert("Erro ao criar utilizador (Simulação).");
+            }
+        }
+        
+        // --- FUNÇÃO DE APAGAR UTILIZADOR ---
+        async function apagarUtilizador() {
+            const id = document.getElementById('selectApagarUser').value;
+            const select = document.getElementById('selectApagarUser');
+            const nome = select.options[select.selectedIndex]?.text;
+
+            if (!id) {
+                alert("Por favor selecione um utilizador para apagar.");
+                return;
+            }
+
+            if(confirm("ATENÇÃO!\n\nTem a certeza que deseja apagar permanentemente o utilizador:\n" + nome + "?\n\nEsta ação não pode ser desfeita!")) {
+                try {
+                    // Simulação da chamada API
+                    const res = await fetch('/api/utilizadores/' + id, { method: 'DELETE' });
+                    // Em produção, verificar res.ok
+                    
+                    alert("Utilizador apagado com sucesso.");
+                    
+                    // Remover da lista localmente e atualizar UI
+                    listaJogadores = listaJogadores.filter(u => u.id != id);
+                    atualizarDropdowns();
+                    
+                    // Limpar campos da fatura se fosse o utilizador apagado
+                    if(document.getElementById('fatSelectJogador').value == id) {
+                        document.getElementById('fatSelectJogador').value = "";
+                        preencherDadosJogador();
+                    }
+
+                } catch (error) {
+                    alert("Erro ao tentar apagar (Verifique a ligação à API).");
+                    // Remover visualmente apenas para demonstração se a API falhar
+                    listaJogadores = listaJogadores.filter(u => u.id != id);
+                    atualizarDropdowns();
+                }
+            }
+        }
+
+        async function carregarJogadoresPorEscalao() {
+            const esc = document.getElementById('selectEscalaoJogo').value;
+            if(!esc) return;
+            
+            try {
+                const res = await fetch('/api/jogadores/' + esc);
+                const users = await res.json();
+                const sel = document.getElementById('selectJogadoresConvocados');
+                sel.innerHTML = users.map(u => `<option value="${u.id}">${u.nome}</option>`).join('');
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        async function fazerConvocatoria() {
+            const ids = Array.from(document.getElementById('selectJogadoresConvocados').selectedOptions).map(o => o.value);
+            const dados = {
+                adversario: document.getElementById('adversario').value,
+                data: document.getElementById('dataJogo').value,
+                local: document.getElementById('localJogo').value,
+                escalao: document.getElementById('selectEscalaoJogo').value,
+                ids_jogadores: ids
+            };
+            
+            try {
+                const res = await fetch('/api/convocatoria', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(dados)});
+                const json = await res.json();
+                alert(json.mensagem);
+            } catch (error) {
+                alert("Erro ao lançar convocatória");
+            }
+        }
+
+        function preencherDadosJogador() {
+            const user = listaJogadores.find(u => u.id == document.getElementById('fatSelectJogador').value);
+            if(user) {
+                document.getElementById('fatNif').value = user.nif || '';
+                document.getElementById('fatMorada').value = user.morada || '';
+            } else {
+                document.getElementById('fatNif').value = '';
+                document.getElementById('fatMorada').value = '';
+            }
+        }
+
+        function calcTotal() {
+            const base = parseFloat(document.getElementById('fatBase').value) || 0;
+            const iva = parseFloat(document.getElementById('fatIva').value) || 0;
+            const desc = parseFloat(document.getElementById('fatDesc').value) || 0;
+            document.getElementById('fatTotal').value = (base + iva - desc).toFixed(2);
+        }
+
+        async function lancarFatura() {
+            const sel = document.getElementById('fatSelectJogador');
+            const dados = {
+                numero_recibo: document.getElementById('fatRecibo').value,
+                data_emissao: document.getElementById('fatDataEmissao').value,
+                id_jogador: sel.value,
+                // ... restantes campos
+            };
+            
+            try {
+                const res = await fetch('/api/faturas', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(dados)});
+                const json = await res.json();
+                alert(json.mensagem);
+            } catch (error) {
+                alert("Erro ao emitir fatura");
+            }
+        }
+    </script>
+    
+</body>
+</html>

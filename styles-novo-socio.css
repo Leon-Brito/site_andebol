@@ -1,0 +1,136 @@
+:root {
+    --brand-color-primary: #3f7a4a;
+    --brand-color-primary-darker-1: #356437;
+    --brand-color-secondary: #3f7a4a;
+    --badge-width: 90px;
+    --badge-height: 90px;
+}
+
+/* ================================= RESET E BASE ================================== */
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, figure {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #fff;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ================================= CABEÇALHO ================================= */
+#header {
+    padding: 1rem 0;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+#branding .club-badge img {
+    width: var(--badge-width);
+    height: var(--badge-height);
+    object-fit: contain;
+}
+
+#header .club-name {
+    color: var(--brand-color-primary);
+}
+
+#header .site-slogan {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.socialmedia_icons a {
+    color: var(--brand-color-primary);
+    transition: 0.3s;
+}
+
+.socialmedia_icons a:hover {
+    color: var(--brand-color-primary-darker-1);
+}
+
+/* ================================== BARRA DE NAVEGAÇÃO =================================== */
+.navbar.bg-success {
+    background-color: var(--brand-color-primary) !important;
+}
+
+.navbar .nav-link,
+.navbar .navbar-brand {
+    color: #fff !important;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+    color: #e0e0e0 !important;
+}
+
+#btn-envi{
+    background-color: #356437;
+}
+/* Opcional: Para alinhar o texto com a imagem e formulário */
+#content {
+    padding-top: 20px;
+}
+/* Navbar override leve para Bootstrap 5 */
+.navbar.bg-success { background-color: var(--brand-color-primary) !important; }
+.navbar .nav-link, .navbar .navbar-brand { color: #fff !important; }
+.navbar .nav-link:hover, .navbar .nav-link.active { color: #e0e0e0 !important; }
+
+/* Layout containers: mantenho .wrapper de forma não intrusiva */
+.container .wrapper { margin: 0; }
+
+/* Item image */
+.item-image img { max-width: 100%; height: auto; display:block; margin-bottom: 1rem; }
+
+/* Members form styling (não altera estrutura) */
+.members_form {
+  background: #ffffff;
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+.members_form .block-header { margin-bottom: 1rem; }
+.members_form .block-title { color: var(--brand-color-primary); font-weight: 600; }
+
+.members_form .form-control,
+.members_form .form-select {
+  border-radius: 4px;
+  height: calc(1.6rem + 1rem);
+  padding: .5rem .625rem;
+}
+
+.members_form .form-check-input { margin-top: .35rem; }
+
+/* Captcha */
+.captcha { display:inline-block; max-height:40px; }
+
+/* Sponsors */
+.sponsors-grid img { max-width:100%; height:auto; }
+
+/* Footer */
+
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+/* Responsividade (mantive os breakpoints do original) */
+@media (max-width: 992px) {
+  /* somente ajustes visuais, sem mudar layout */
+  .members_form { padding: .75rem; }
+}
+
+@media (max-width: 480px) {
+  .members_form .form-control { font-size: 0.95rem; }
+}

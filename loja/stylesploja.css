@@ -1,0 +1,522 @@
+
+/* Header principal */
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* O conteúdo principal expande para ocupar o espaço entre header e footer */
+#content {
+  flex: 1;
+}
+
+/* Footer sempre no fundo, mas empurrado para baixo quando há pouco conteúdo */
+footer#footer {
+  background: #1f1f1f; /* ajusta conforme teu design */
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+  margin-top: auto;
+}
+
+
+#branding .club-badge img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  display: block;
+}
+
+/* ================================
+   HEADER
+   ================================ */
+#header .club-name {
+  color: #3f7a4a;
+  font-weight: 600;
+}
+
+#header .site-slogan {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+/* ================================
+   SOCIAL MEDIA ICONS
+   ================================ */
+.socialmedia_icons a {
+  color: #3f7a4a;
+  transition: color 0.3s ease;
+}
+
+.socialmedia_icons a:hover {
+  color: #356437;
+
+  
+}
+
+.mySwiper .swiper-slide {
+  background-size: cover;
+  background-position: center;
+}
+
+.mySwiper .swiper-pagination-bullet {
+  background: #3f7a4a;
+}
+
+
+
+#branding .club-badge img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+}
+
+#header .club-name {
+    color: #3f7a4a;
+}
+
+#header .site-slogan {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.socialmedia_icons a {
+    color: #3f7a4a;
+    transition: 0.3s;
+}
+
+.socialmedia_icons a:hover {
+    color: #356437;
+
+}
+
+/* ================================
+   NAVBAR
+   ================================ */
+.navbar.bg-success {
+
+  background-color: #3f7a4a !important;
+}
+
+.navbar .nav-link,
+.navbar .navbar-brand {
+  color: #fff !important;
+  transition: color 0.3s ease;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: #e0e0e0 !important;
+}
+
+
+
+.navbar .nav-link, .navbar .navbar-brand {
+    color: #fff !important;
+}
+
+.navbar .nav-link:hover, .navbar .nav-link.active {
+    color: #e0e0e0 !important;
+}
+
+#content {
+    background-color: #fff;
+    padding-bottom: 60px;
+    padding-top: 40px
+}
+
+#content #page-content {
+    position: relative;
+    float: left;
+    width: 100%;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    
+}
+
+#content #page-content.with-sidebar {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px
+}
+
+@media(min-width: 992px) {
+    #content #page-content.with-sidebar {
+        float:left;
+        width: 66.6666666667%
+    }
+}
+
+#content #sidebar {
+    position: relative;
+    float: left;
+    width: 100%;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px
+}
+
+@media(min-width: 992px) {
+    #content #sidebar {
+        float:left;
+        width: 33.3333333333%
+    }
+}
+
+#content #content-bottom,#content #content-top,#content #content-featured {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    clear: both
+}
+
+@media(min-width: 768px) {
+    #content #content-bottom,#content #content-top,#content #content-featured {
+        float:left;
+        width: 100%
+    }
+}
+
+#content #content-main {
+    position: relative;
+    float: left;
+    width: 100%;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px
+}
+
+#content #content-main.with-sidebar {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px
+}
+
+@media(min-width: 768px) {
+    #content #content-main.with-sidebar {
+        float:left;
+        width: 66.6666666667%
+    }
+}
+
+#content #content-main.with-sidebars {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px
+}
+
+@media(min-width: 992px) {
+    #content #content-main.with-sidebars {
+        float:left;
+        width: 50%
+    }
+}
+
+#content #content-main.with-half-sidebar {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px
+}
+
+@media(min-width: 992px) {
+    #content #content-main.with-half-sidebar {
+        float:left;
+        width: 50%
+    }
+}
+
+#content #content-sidebar {
+    position: relative;
+    float: left;
+    width: 100%;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px
+}
+
+@media(min-width: 768px) {
+    #content #content-sidebar {
+        float:left;
+        width: 33.3333333333%
+    }
+}
+
+#content #content-half-sidebar {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px
+}
+
+@media(min-width: 992px) {
+    #content #content-half-sidebar {
+        float:left;
+        width: 50%
+    }
+}
+
+#content #content-sidebar1,#content #content-sidebar2 {
+    position: relative;
+    float: left;
+    width: 100%;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px
+}
+
+@media(min-width: 768px) {
+    #content #content-sidebar1,#content #content-sidebar2 {
+        float:left;
+        width: 50%
+    }
+}
+
+@media(min-width: 992px) {
+    #content #content-sidebar1,#content #content-sidebar2 {
+        float:left;
+        width: 25%
+    }
+}
+
+#content #content-top {
+    margin-bottom: 35px
+}
+
+#content #content-bottom {
+    margin-top: 35px
+}
+.news-featured {
+    margin-bottom: 30px
+}
+
+.news-featured article {
+    position: relative
+}
+
+.news-featured article .new-image {
+    margin-bottom: 0
+}
+
+.news-featured article .new-content {
+    background-color: rgba(0,0,0,.5);
+    bottom: 0;
+    position: absolute;
+    width: 100%
+}
+
+.news-featured article .new-content header {
+    margin: 0
+}
+
+.news-featured article .item-title {
+    font-size: 1.6em !important;
+    margin: 0;
+    padding: 10px 15px
+}
+
+.news-featured article .item-title a {
+    color: #fff
+}
+
+.news-featured article .item-title a:hover {
+    text-decoration: underline
+}
+
+.news_latest .new-date {
+    color: #777;
+    font-size: .8em
+}
+
+.news_categories_list .badge {
+    margin-left: 10px;
+    margin-top: -2px;
+    background-color: var(--brand-color-primary, #000000);
+    color: #fff
+}
+
+.products {
+    margin-top: -30px
+}
+
+.products-app {
+    clear: both
+}
+
+.products-app.detail .item-image {
+  position: relative;
+  min-height: 1px;
+  padding-left: 350px;  /* reduzido de 15px */
+  padding-right: 5px; /* reduzido de 15px */
+  margin-right: -20px; /* opcional: aproxima ainda mais a imagem do texto */
+}
+#page_titulo{
+    margin-left: 400px;
+    margin-top: 45px;
+}
+#page_title{
+    margin-left: 350px;
+    margin-top: 45px;
+}
+
+
+@media(min-width: 992px) {
+    .products-app.detail .item-image {
+        float:left;
+        width: 41.6666666667%
+    }
+}
+
+@media(min-width: 1200px) {
+    .products-app.detail .item-image {
+        float:left;
+        width: 50%
+    }
+}
+
+.products-app.detail .item-image div {
+    margin-bottom: 15px
+}
+
+.products-app.detail .item-image div:last-child {
+    margin-bottom: 0
+}
+
+.products-app.detail .item-image .slick-prev {
+    left: 15px
+}
+
+.products-app.detail .item-image .slick-next {
+    right: 15px
+}
+
+.products-app.detail .item-image .slick-dots {
+    bottom: 15px !important
+}
+
+.products-app.detail .item-image .slick-dots li button::before {
+    color: var(--brand-color-primary, #000000) !important
+}
+
+.products-app.detail .item-details {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px
+}
+
+/* ================================
+   PADRONIZAÇÃO DE IMAGENS (3:4)
+   ================================ */
+img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  display: block;
+  max-height: none;   /* opcional, melhora estética */
+}
+
+/* Exceções — logotipos e ícones */
+
+
+
+@media(min-width: 992px) {
+    .products-app.detail .item-details {
+        float:left;
+        width: 58.3333333333%
+    }
+}
+
+@media(min-width: 1200px) {
+    .products-app.detail .item-details {
+        float:left;
+        width: 50%
+    }
+}
+
+.products-app.detail .item-details .old-price {
+    text-decoration: line-through
+}
+#content-sidebar .template-block,#content-sidebar1 .template-block,#content-sidebar2 .template-block,#content-bottom .template-block,#content-top .template-block,#content-main .template-block,#sidebar .template-block {
+    margin-bottom: 35px
+}
+
+#content-sidebar .template-block:last-child,#content-sidebar1 .template-block:last-child,#content-sidebar2 .template-block:last-child,#content-bottom .template-block:last-child,#content-top .template-block:last-child,#content-main .template-block:last-child,#sidebar .template-block:last-child {
+    margin-bottom: 0
+}
+
+@media only screen and (max-width: 991px) {
+    #page-content,#content-main,#content-sidebar,#content-sidebar1,#content-sidebar2 {
+        margin-bottom:35px
+    }
+}
+/* Layout responsivo para produtos (imagem acima no mobile) */
+/* ===== CORREÇÃO DEFINITIVA PARA TELEMÓVEL ===== */
+@media (max-width: 768px) {
+  .products-app.detail {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+  }
+
+  .products-app.detail .item-image {
+    float: none !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 auto 20px auto !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .products-app.detail .item-image img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+    aspect-ratio: auto !important; /* remove corte */
+  }
+
+  #page_titulo,
+  #page_title {
+    text-align: center !important;
+    margin: 20px auto 10px auto !important;
+    float: none !important;
+  }
+
+  .products-app.detail .item-details {
+    float: none !important;
+    width: 100% !important;
+    padding: 0 15px !important;
+    margin: 0 auto !important;
+    text-align: left !important;
+  }
+}

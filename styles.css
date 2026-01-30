@@ -1,0 +1,201 @@
+
+/* ================================
+   SLIDER
+ 
+ 
+   ================================ */
+/* Correção de Margem Universal do Body */
+body {
+  margin: 0;
+  padding: 0;
+}
+.description--generic {
+    color: #232323;
+    font-size: .9375rem;
+    font-weight: 400;
+    line-height: 1.4666666667
+}
+
+.description--generic a {
+    color: #0882c2;
+    transition: all .3s ease
+}
+
+.description--generic a:hover {
+    text-decoration: underline
+}
+
+.description--generic * {
+    max-width: 100%;
+    word-break: break-word
+}
+
+/* Garante que a header não empurre o conteúdo para baixo */
+
+
+/* Ajuste o bloco do slider para garantir que ele comece no topo (abaixo da header) */
+
+
+/* Se for o caso, force o ajuste do Swiper */
+
+
+/* Slider */
+
+
+
+.mySwiper {
+  width: 100%;
+
+  height: 54vh;
+  overflow: hidden;
+  position: relative !important;
+  margin-bottom: 0; /* FORÇA O CONTEXTO DE POSIÇÃO ABSOLUTA */
+}
+
+.mySwiper .swiper-slide {
+  position: relative;
+  /* Adicionar/Garantir estas propriedades: */
+  background-size: contain;     /* Redimensiona para cobrir o slide */
+  background-repeat: no-repeat; /* IMPEDE A REPETIÇÃO */
+  margin-bottom: 1%;
+  /* Fim das adições */
+}
+.mySwiper .swiper-pagination {
+  bottom: 10px !important;    /* Ajuste a distância da base da imagem */
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  position: absolute !important; /* Posiciona DENTRO do .mySwiper */
+  width: auto !important;
+  z-index: 100 !important;
+}
+
+.mySwiper .swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* cobre o ecrã, corte mínimo e centralizado */
+  object-position: center;
+  display: block;
+  
+}
+
+.mySwiper .swiper-pagination-bullet {
+  margin-top: 0; 
+  background: #3f7a4a;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+  /* Adicione margem se os pontos estiverem muito juntos */
+  
+}
+
+.mySwiper .swiper-pagination-bullet-active {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .mySwiper {
+    height: 14vh;
+  }
+}
+
+/* ================================
+   BRANDING
+   ================================ */
+#branding .club-badge img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  display: block;
+}
+
+/* ================================
+   HEADER
+   ================================ */
+#header .club-name {
+  color: #3f7a4a;
+  font-weight: 600;
+}
+
+#header .site-slogan {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+/* ================================
+   SOCIAL MEDIA ICONS
+   ================================ */
+.socialmedia_icons a {
+  color: #3f7a4a;
+  transition: color 0.3s ease;
+}
+
+.socialmedia_icons a:hover {
+  color: #356437;
+
+  
+}
+
+.mySwiper .swiper-slide {
+  background-size: cover;
+  background-position: center;
+}
+
+.mySwiper .swiper-pagination-bullet {
+  background: #3f7a4a;
+}
+
+
+
+#branding .club-badge img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+}
+
+#header .club-name {
+    color: #3f7a4a;
+}
+
+#header .site-slogan {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.socialmedia_icons a {
+    color: #3f7a4a;
+    transition: 0.3s;
+}
+
+.socialmedia_icons a:hover {
+    color: #356437;
+
+}
+
+/* ================================
+   NAVBAR
+   ================================ */
+.navbar.bg-success {
+
+  background-color: #3f7a4a !important;
+}
+
+.navbar .nav-link,
+.navbar .navbar-brand {
+  color: #fff !important;
+  transition: color 0.3s ease;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: #e0e0e0 !important;
+}
+
+
+
+.navbar .nav-link, .navbar .navbar-brand {
+    color: #fff !important;
+}
+
+.navbar .nav-link:hover, .navbar .nav-link.active {
+    color: #e0e0e0 !important;
+}
+

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minhas Convocatórias - ACO</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .user-status-bar { background: #f1f1f1; border-bottom: 1px solid #ddd; padding: 10px 0; margin-bottom: 20px; color: #555; font-size: 0.9rem; }
+        .card-jogo { background-color: #ffffff; border: 1px solid #e0e0e0; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); overflow: hidden; transition: all 0.3s ease; height: 100%; }
+        .card-jogo:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(25, 135, 84, 0.2); border-color: #198754; }
+        .card-top { background-color: #f8f9fa; padding: 12px 20px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 0.85rem; color: #555; letter-spacing: 0.5px; }
+        .card-body-jogo { padding: 20px; }
+        .jogo-versus { text-align: center; margin-bottom: 20px; font-size: 1.3rem; font-weight: 700; text-transform: uppercase; }
+        .jogo-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; background-color: #fdfdfd; padding: 10px; border-radius: 8px; border: 1px dashed #e0e0e0; }
+        .info-label { display: block; font-size: 0.75rem; text-transform: uppercase; color: #888; font-weight: 600; margin-bottom: 3px; }
+        .jogo-info-grid i { margin-right: 5px; width: 20px; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <header id="header" class="header1">
+        <div id="header-content" class="container d-flex justify-content-between align-items-center">
+            <div id="branding" class="d-flex align-items-center">
+                <div class="club-badge me-3">
+                    <a href="#"><img src="../img/logo_9JToiDZ.png" alt="logo" width="90" height="90"></a>
+                </div>
+                <h2 class="club-name mb-0">
+                    Andebol Clube Olhão
+                    <span class="site-slogan d-block small">#maisqueumclube</span>
+                </h2>
+            </div>
+            <aside class="template-block socialmedia_icons">
+                <div class="icons d-flex gap-3 fs-4">
+                    <a href="https://www.facebook.com/AndebolClubeOlhao/" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/andebol_clube_olhao/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@andebolclubeolhao" target="_blank"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </aside>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-success mt-3">
+            <div class="container">
+                <a class="navbar-brand d-lg-none" href="#">Menu</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div id="mainNav" class="collapse navbar-collapse">
+                    <ul class="navbar-nav" id="menuPrincipal">
+                        <li class="nav-item"><a href="../index.html" class="nav-link">Início</a></li>
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Clube</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="historiaaco.html">História</a></li>
+                                <li><a class="dropdown-item" href="mensagempr.html">Mensagem do Presidente</a></li>
+                                <li><a class="dropdown-item" href="Estrutura-desportiva.html">Estrutura desportiva</a></li>
+                                <li><a class="dropdown-item" href="historia.html">Cidade de Olhão</a></li>
+                                <li><a class="dropdown-item" href="contactos.html">Contatos</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="sociosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Sócios</a>
+                            <ul class="dropdown-menu" aria-labelledby="sociosDropdown">
+                                <li><a class="dropdown-item" href="../novo-socio.html">Novo Sócio</a></li>
+                                <li><a class="dropdown-item" href="financeiro.html">Financeiro</a></li>
+                                <li><a class="dropdown-item" href="convocatoria.html">Convocatória</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="equipasDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Equipas</a>
+                            <ul class="dropdown-menu" aria-labelledby="equipasDropdown">
+                                <li><a class="dropdown-item" href="equipas/sub18.html">Sub-18 Masculino</a></li>
+                                <li><a class="dropdown-item" href="equipas/sub16.html">Sub-16 Masculino</a></li>
+                                <li><a class="dropdown-item" href="equipas/sub14.html">Sub-14 Masculino</a></li>
+                                <li><a class="dropdown-item" href="equipas/sub12.html">Minis Masculino</a></li>
+                                <li><a class="dropdown-item" href="equipas/minisf.html">Minis Feminino</a></li>
+                                <li><a class="dropdown-item" href="equipas/bambis.html">Bambis Masculino</a></li>
+                                <li><a class="dropdown-item" href="equipas/bambis.html">Bambis Feminino</a></li>
+                                <li><a class="dropdown-item" href="equipas/manitas.html">Manitas Masculino</a></li>
+                                <li><a class="dropdown-item" href="equipas/manitas.html">Manitas Feminino</a></li>
+                                <li><a class="dropdown-item" href="equipas/baby.html">Baby</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a href="noticias.html" class="nav-link">Notícias</a></li>
+                        <li class="nav-item"><a href="../loja.html" class="nav-link">Loja</a></li>    
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+   
+
+    <div class="container mt-4">
+        <h3 style="color: #003366; border-bottom: 2px solid #198754; display:inline-block; padding-bottom: 5px; margin-bottom: 30px;">
+            <i class="fa-solid fa-calendar-check"></i> Próximos Jogos
+        </h3>
+
+        <div id="listaJogos" class="row">
+            <div class="col-12 text-center py-5">
+                <div class="spinner-border text-success" role="status"></div>
+                <p class="mt-2 text-muted">A carregar convocatórias...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="main.js"></script>
+    <script>
+        // 1. SEGURANÇA: Verificar se está logado
+        const userStr = localStorage.getItem('utilizador');
+        
+        if (!userStr) {
+            window.location.href = 'login.html?destino=convocatoria.html'; 
+        } else {
+            const utilizador = JSON.parse(userStr);
+            
+            // Põe o nome no cabeçalho
+            const spanNome = document.getElementById('nomeUser');
+            if(spanNome) {
+                spanNome.innerText = utilizador.nome.split(' ')[0];
+            }
+
+            
+
+            // Carrega os jogos
+            carregarConvocatorias(utilizador.id);
+        }
+
+        // Função Sair
+        function sair() { 
+            localStorage.removeItem('utilizador'); 
+            window.location.href = 'login.html'; 
+        }
+
+        // 3. CARREGAR JOGOS DA API
+        async function carregarConvocatorias(idAtleta) {
+            const container = document.getElementById('listaJogos');
+            try {
+                const res = await fetch(`/api/meus-jogos?id=${idAtleta}`);
+                if (!res.ok) throw new Error('Erro na resposta do servidor');
+
+                const jogos = await res.json();
+                container.innerHTML = '';
+
+                if (jogos.length === 0) {
+                    container.innerHTML = `
+                        <div class="col-12 empty-state text-center py-5">
+                            <i class="fa-regular fa-calendar-xmark" style="font-size:3rem; margin-bottom:15px; color:#ccc;"></i>
+                            <h4>Sem jogos agendados</h4>
+                            <p class="text-muted">Não existem convocatórias ativas para ti neste momento.</p>
+                        </div>`;
+                    return;
+                }
+
+                jogos.forEach(jogo => {
+                    const d = new Date(jogo.data_jogo);
+                    const meses = ["JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"];
+                    const horaStr = d.toLocaleTimeString('pt-PT', { hour: '2-digit', minute: '2-digit' });
+
+                    container.innerHTML += `
+                        <div class="col-md-6 mb-4">
+                            <div class="card-jogo">
+                                <div class="card-top">
+                                    <span><i class="fa-solid fa-trophy"></i> JOGO OFICIAL</span>
+                                    <span class="badge bg-dark text-warning">${jogo.escalao || "Geral"}</span>
+                                </div>
+                                <div class="card-body-jogo">
+                                    <div class="jogo-versus">
+                                        <span class="text-success">ACO</span>
+                                        <span style="color:#ddd; font-size:0.9rem;">VS</span>
+                                        <span class="text-dark">${jogo.jogo_contra || "A definir"}</span>
+                                    </div>
+                                    <hr style="opacity:0.1">
+                                    <div class="jogo-info-grid">
+                                        <div><span class="info-label">Data</span><div><i class="fa-regular fa-calendar"></i> ${d.getDate()} ${meses[d.getMonth()]}</div></div>
+                                        <div><span class="info-label">Hora</span><div><i class="fa-regular fa-clock"></i> ${horaStr}</div></div>
+                                        <div style="grid-column: 1 / -1;"><span class="info-label">Local</span><div class="text-danger"><i class="fa-solid fa-location-dot"></i> ${jogo.local || "Pavilhão Municipal"}</div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`;
+                });
+            } catch (error) {
+                console.error(error);
+                container.innerHTML = `<div class="col-12 text-center text-danger mt-5">Erro ao carregar jogos.</div>`;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+/* Reset parcial (mantém compatibilidade com o original) */
+:root {
+    --brand-color-primary: #457c4e;
+    --brand-color-primary-darker-1: #457c4e;
+  }
+  
+  /* Base */
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #fff;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  
+  .socialmedia_icons a {
+    color: var(--brand-color-primary);
+    transition: 0.3s;
+  }
+  
+  .socialmedia_icons a:hover {
+    color: var(--brand-color-primary-darker-1);
+  }
+  
+  /* Header */
+  #header {
+    padding: 1rem 0;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+  }
+  #branding .club-badge img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+  }
+  #header .club-name {
+    color: var(--brand-color-primary);
+  }
+  
+  .page-header {
+    margin-bottom: 20px;
+  }
+  .page-header h1 {
+    font-size: 3.5rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+  }
+  .page-header h1 p { margin: 0; }
+  .page-header h1 span {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #666;
+    margin-top: 5px;
+  }
+  #content { padding-top: 20px; }
+  
+  /* Navbar override leve para Bootstrap 5 */
+  .navbar.bg-success { background-color: var(--brand-color-primary) !important; }
+  .navbar .nav-link,
+  .navbar .navbar-brand { color: #fff !important; }
+  .navbar .nav-link:hover,
+  .navbar .nav-link.active { color: #e0e0e0 !important; }
+  
+  /* ===== ORGANOGRAMA ===== */
+  /* Container que irá agrupar todos os departamentos lado a lado */
+.organograma {
+    display: flex;
+    justify-content: space-around; /* Distribui os departamentos */
+    flex-wrap: wrap; /* Permite quebrar linha em telas menores */
+    align-items: flex-start; /* Alinha o topo dos departamentos */
+    margin: 20px auto; /* Centraliza e adiciona margem */
+    max-width: 1200px; /* Limita a largura para remover o espaço excessivo */
+}
+
+/* Estilo para cada departamento (Direção, Técnico, Marketing) */
+.departamento {
+    display: flex;
+    flex-direction: column; /* Título do departamento em cima, membros em baixo */
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+}
+  
+  .organograma ul {
+    list-style: none;
+    padding-left: 0;
+    text-align: center; /* Centraliza os itens filhos horizontalmente */
+}
+
+.organograma li {
+    display: inline-block; /* Permite que os li fiquem lado a lado */
+    vertical-align: top;
+    margin: 10px; /* Espaçamento entre boxes */
+}
+
+.organograma .box {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza conteúdo dentro da box */
+    text-align: center;
+}
+
+.organograma .box img {
+    display: block;
+    margin: 0 auto; /* Garante que a imagem fique centralizada */
+}
+  
+  /* Linhas de conexão */
+  .organograma li::before,
+  .organograma li::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    border-top: 2px solid #333;
+    width: 50%;
+    height: 20px;
+  }
+  .organograma li::before { left: -50%; }
+  .organograma li::after { right: -50%; }
+  .organograma li:only-child::before,
+  .organograma li:only-child::after { display: none; }
+  .organograma li:only-child { padding-top: 0; }
+  .organograma li:first-child::before,
+  .organograma li:last-child::after { border: none; }
+  
+  /* Caixas */
+  .box {
+    display: inline-block;
+    padding: 12px 15px;
+    border-radius: 12px;
+    background: #f9b210;
+    font-weight: bold;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    min-width: 140px;
+    max-width: 160px;
+  }
+  .box span {
+    display: block;
+    font-size: 13px;
+    font-weight: normal;
+    color: #222;
+    margin-top: 4px;
+  }
+  
+  /* Foto circular dentro da box */
+  .box img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 6px;
+    border: 3px solid #fff;
+    box-shadow: 0 0 6px rgba(0,0,0,0.2);
+  }
+  /* Alinha o Presidente (se houver) e os outros membros em um container Flexbox */
+.membros-wrapper {
+    display: flex;
+    flex-direction: column; /* Presidente em cima de outros membros */
+    align-items: center;
+}
+
+/* Container para agrupar os membros que ficam lado a lado */
+.outros-membros {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+  /* Destaques */
+  .presidente {
+    background: #000;
+    color: #fff;
+    margin-top: 10px;
+  }
+  .presidente span { color: #eee; }
+  
+  .dept {
+    background: #ff9800;
+    color: #fff;
+
+  }
+  .dept span { color: #f5f5f5; }
+  
+  /* Responsividade */
+  @media (max-width: 992px) {
+    .organograma ul { flex-direction: column; }
+    .organograma ul ul { flex-direction: column; }
+    .organograma li { margin: 15px 0; }
+  }
+  
+  @media (max-width: 768px) {
+    .footer-content { flex-direction: column; gap: 15px; }
+  }
+  
+  @media (max-width: 480px) {
+    .members_form .form-control { font-size: 0.95rem; }
+    .box img { width: 60px; height: 60px; }
+    .box { min-width: 120px; max-width: 140px; }
+  }
+  
