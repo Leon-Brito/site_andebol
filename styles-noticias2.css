@@ -323,3 +323,68 @@ a {
 .main-footer {
     border-top: 5px solid #198754;
 }
+/* ========================================= */
+/* ESTILOS DA PÁGINA INDIVIDUAL DE NOTÍCIA   */
+/* ========================================= */
+
+/* Corpo do Texto */
+.post-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #333;
+}
+
+.post-content p {
+    margin-bottom: 1.5rem;
+}
+
+/* Citação em Destaque (Blockquote) */
+.custom-quote {
+    border-left: 4px solid #198754; /* Verde */
+    padding-left: 20px;
+    background-color: #f8fdf9;
+    padding: 20px;
+    font-style: italic;
+    color: #555;
+    border-radius: 0 8px 8px 0;
+}
+
+/* Barra Lateral Fixa (Sticky Sidebar) */
+.sidebar-sticky {
+    position: sticky;
+    top: 20px; /* Fica preso no topo ao fazer scroll */
+}
+
+/* Título da Widget */
+.sidebar-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-bottom: 2px solid #198754;
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+/* Mini Imagens na Barra Lateral */
+.mini-img-wrapper {
+    width: 70px;
+    height: 70px;
+    flex-shrink: 0;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.mini-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.mini-news-item:hover .mini-img-wrapper img {
+    transform: scale(1.1);
+}
+
+.mini-news-item:hover h6 {
+    color: #198754 !important; /* Muda título para verde ao passar o rato */
+}
