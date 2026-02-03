@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estrutura desportiva | Andebol Clube Olhão</title>
-    <link rel="stylesheet" href="styles-orgaos.css">
+    <title>Notícias - Andebol Clube Olhão</title>
+    
+    <link rel="stylesheet" href="styles-noticias2.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="icon" type="image/png" href="img/logo_9JToiDZ.png">
-
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
+
     <header id="header" class="header1">
         <div id="header-content" class="container d-flex justify-content-between align-items-center">
             <div id="branding" class="d-flex align-items-center">
@@ -27,6 +29,7 @@
                     <a href="https://www.facebook.com/AndebolClubeOlhao/" target="_blank"><i class="fab fa-facebook"></i></a>
                     <a href="https://www.instagram.com/andebol_clube_olhao/" target="_blank"><i class="fab fa-instagram"></i></a>
                     <a href="https://www.tiktok.com/@andebolclubeolhao" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    
                 </div>
             </aside>
         </div>
@@ -79,54 +82,87 @@
             </div>
         </nav>
     </header>
-
-    <div class="organograma container">
-    <div class="departamento">
-        <div class="box dept principal">Direção</div>
-        <div class="membros-wrapper">
-            <div class="box presidente">
-                <img src="img/orgaos/marcelo.png" alt="Marcelo Marreiros">
-                Marcelo Marreiros<br>
-                <span>Presidente</span>
-            </div>
-            <div class="outros-membros">
-                <div class="box"><img src="img/orgaos/paulo.jpg" alt="Paulo Condinho">Paulo Condinho<br><span>Vice-Presidente</span></div>
-                <div class="box"><img src="img/orgaos/salustiano.jpg" alt="Salustiano Brito">Salustiano Brito<br><span>Tesoureiro</span></div>
-                <div class="box"><img src="img/orgaos/fernando.jpg" alt="Fernando Coelho">Fernando Coelho<br><span>Secretário</span></div>
-                <div class="box"><img src="img/orgaos/marta.jpg" alt="Marta Brito">Marta Brito<br><span>Vogal</span></div>
-            </div>
+    <section class="page-header-section">
+        <div class="container text-center">
+            <h1 class="display-5 fw-bold text-success">Notícias do Clube</h1>
+            <div class="divider mx-auto"></div>
+            <p class="lead text-muted mt-2">Fica a par de tudo o que acontece no nosso universo.</p>
         </div>
-    </div>
-    
-    <div class="departamento">
-        <div class="box dept principal">Departamento Técnico</div>
-        <div class="membros-wrapper tecnico">
-            <div class="box presidente"><img src="img/orgaos/mario.jpg" alt="Mário Miguel">Mário Miguel<br><span>Coordenador Técnico</span></div>
-            <div class="outros-membros tecnico-equipa">
-                <div class="box"><img src="img/orgaos/humberto.png" alt="Humberto Pedro">Humberto Pedro<br><span>Treino de GR</span></div>
-                <div class="box"><img src="img/orgaos/marcio.jpg" alt="Márcio Machado">Márcio Machado<br><span>Babys</span></div>
-                <div class="box"><img src="img/orgaos/helio_jesus.jpg" alt="Hélio Jesus">Hélio Jesus<br><span>Manitas e Bambis</span></div>
-                <div class="box"><img src="img/orgaos/marcelo.png" alt="Marcelo Marreiros">Marcelo Marreiros<br><span>Minis Feminino</span></div>
-                <div class="box"><img src="img/orgaos/mario.jpg" alt="Mário Miguel">Mário Miguel<br><span>Minis e Sub-14M</span></div>
-                <div class="box"><img src="img/orgaos/vitor.jpg" alt="Vítor Jesus">Vítor Jesus<br><span>Sub-16 e 18M</span></div>
-                <div class="box"><img src="img/orgaos/helio_santo.png" alt="Hélio Santos">Hélio Santos<br><span>Sub-16 e 18M</span></div>
-            </div>
+    </section>
+
+    <main class="container news-container mb-5">
+        <div class="news-grid">
+            
+            <article class="news-card">
+                <div class="card-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1547347298-4074fc3086f0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Jogo de Andebol">
+                    <span class="category-tag">Seniores</span>
+                </div>
+                <div class="card-content">
+                    <div class="meta-data">
+                        <i class="far fa-calendar-alt"></i> 03 FEV 2026
+                    </div>
+                    <h3>Vitória expressiva em casa</h3>
+                    <p>A nossa equipa sénior dominou o jogo de ontem, garantindo uma vitória importante para a manutenção no topo da tabela.</p>
+                    <div class="card-footer-custom">
+                        <a href="#" class="btn-read-more">Ler Mais <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <div class="card-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1563299796-b729d0af54a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Formação">
+                    <span class="category-tag">Formação</span>
+                </div>
+                <div class="card-content">
+                    <div class="meta-data">
+                        <i class="far fa-calendar-alt"></i> 01 FEV 2026
+                    </div>
+                    <h3>Captações Abertas: Novos Talentos</h3>
+                    <p>Tens entre 8 e 14 anos? Vem experimentar andebol no AC Olhão! Treinos abertos durante todo o mês de Fevereiro.</p>
+                    <div class="card-footer-custom">
+                        <a href="#" class="btn-read-more">Ler Mais <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <div class="card-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Eventos">
+                    <span class="category-tag">Eventos</span>
+                </div>
+                <div class="card-content">
+                    <div class="meta-data">
+                        <i class="far fa-calendar-alt"></i> 28 JAN 2026
+                    </div>
+                    <h3>Jantar de Aniversário do Clube</h3>
+                    <p>Vem celebrar mais um ano de história do nosso clube. As inscrições para o jantar estão abertas na secretaria.</p>
+                    <div class="card-footer-custom">
+                        <a href="#" class="btn-read-more">Ler Mais <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <div class="card-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Equipa Técnica">
+                    <span class="category-tag">Clube</span>
+                </div>
+                <div class="card-content">
+                    <div class="meta-data">
+                        <i class="far fa-calendar-alt"></i> 20 JAN 2026
+                    </div>
+                    <h3>Novos reforços na equipa técnica</h3>
+                    <p>Apresentamos os novos coordenadores para a formação, focados no desenvolvimento dos nossos jovens atletas.</p>
+                    <div class="card-footer-custom">
+                        <a href="#" class="btn-read-more">Ler Mais <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
         </div>
-    </div>
-
-    <div class="departamento">
-        <div class="box dept principal">Departamento Marketing e Comunicação</div>
-        <div class="membros-wrapper tecnico">
-            <div class="outros-membros tecnico-equipa">
-                <div class="box"><img src="img/orgaos/andre.png" alt="André Brito">André Brito<br><span>Redes Sociais, Foto e Vídeo</span></div>
-                <div class="box"><img src="img/orgaos/joao.jpg" alt="João Catarina">João Catarina<br><span>Redes Sociais e Fotografia</span></div>
-            </div>
-        </div>
-    </div>
-</div>
-      
-
-
+    </main>
 
     <footer id="footer" class="bg-dark text-white py-4">
   <div class="container d-flex justify-content-between">
@@ -140,17 +176,8 @@
   </div>
   <div class="text-center small mt-2">Criado por Leonardo Brito</div>
 </footer>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-..." crossorigin="anonymous"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
-
-    <link rel="stylesheet" href="https://blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
-    <script src="https://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
-    <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=6595a4d55428320019c58a3c&amp;product=inline-share-buttons" async="async"></script>
-
     <script src="main.js"></script>
-
-
 </body>
 </html>

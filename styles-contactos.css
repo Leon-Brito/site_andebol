@@ -1,18 +1,32 @@
 /* ============================== VARIÁVEIS DE NÚCLEOS E DIMENSÕES ================================ */
-:root {
-    --brand-color-primary: #3f7a4a;
-    --brand-color-primary-darker-1: #356437;
-    --brand-color-secondary: #3f7a4a;
-    --badge-width: 90px;
-    --badge-height: 90px;
+:root{
+  --green: #2f7a34;
+  --green-dark: #235d28;
+  --muted: #6b6b6b;
+  --max-width: 1120px;
+  --gutter: 24px;
+  --radius: 6px;
+}
+
+*{box-sizing: border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color:#222;
+  background:#fff;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
 
 /* ================================= RESET E BASE ================================== */
-body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, figure {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+
+/* Reset parcial (mantém compatibilidade com o original) */
+
+
+/* Reset/Base */
+
 
 body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -303,3 +317,170 @@ a {
 #content #content-bottom {
     margin-top: 35px
 }
+.header1{
+  background:#fff;
+  border-bottom: 4px solid var(--green);
+}
+#header-content{
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 14px var(--gutter);
+  align-items:center;
+}
+
+/* Branding */
+#branding { display:flex; align-items:center; gap:16px; }
+.club-badge img{ width:90px; height:90px; object-fit:cover; border-radius:50%; box-shadow:0 4px 10px rgba(0,0,0,0.06); }
+.club-name{
+  color: var(--green-dark);
+  font-weight:700;
+  line-height:1;
+}
+.club-name .site-slogan{
+  color: var(--muted);
+  font-weight:600;
+  letter-spacing:0.2px;
+}
+
+/* Social icons */
+.template-block.socialmedia_icons .icons a{
+  color: var(--green-dark);
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:34px;
+  height:34px;
+  border-radius:4px;
+}
+.template-block.socialmedia_icons .icons a:hover{
+  color:#fff;
+  background:var(--green-dark);
+}
+
+/* Navbar override (uses bootstrap classes but fine-tune) */
+.navbar{
+  box-shadow:0 2px 6px rgba(0,0,0,0.06);
+  border-top:4px solid var(--green);
+}
+.navbar .nav-link{
+  color:#fff;
+  font-weight:600;
+}
+.navbar .nav-link:hover,
+.navbar .nav-link:focus { color:#e6f3ea; }
+
+
+/* Small screens: stack image over text */
+@media (max-width: 991.98px){
+  #header-content{ padding: 10px 14px; }
+  #page_title h1{ font-size: 34px; }
+  .wrapper{ margin-top: 18px; padding: 0 14px; }
+  #content-main{
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .item-image img{ max-height: 360px; object-fit:cover; }
+}
+
+/* Very small screens: font-size adjustments */
+@media (max-width: 420px){
+  #page_title h1{ font-size: 28px; }
+  .description--generic{ font-size:0.95rem; }
+}
+
+/* Accessibility focus states */
+a:focus{ outline: 3px solid rgba(47,122,52,0.18); outline-offset:3px; }
+
+/* Utility */
+.img-responsive{ max-width:100%; height:auto; display:block; }
+
+
+
+#branding .club-badge img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  display: block;
+}
+
+/* ================================
+   HEADER
+   ================================ */
+#header .club-name {
+  color: #3f7a4a;
+  font-weight: 600;
+}
+
+#header .site-slogan {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+/* ================================
+   SOCIAL MEDIA ICONS
+   ================================ */
+.socialmedia_icons a {
+  color: #3f7a4a;
+  transition: color 0.3s ease;
+}
+
+.socialmedia_icons a:hover {
+  color: #356437;
+
+  
+}
+#branding .club-badge img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+}
+
+#header .club-name {
+    color: #3f7a4a;
+}
+
+#header .site-slogan {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.socialmedia_icons a {
+    color: #3f7a4a;
+    transition: 0.3s;
+}
+
+.socialmedia_icons a:hover {
+    color: #356437;
+
+}
+
+/* ================================
+   NAVBAR
+   ================================ */
+.navbar.bg-success {
+
+  background-color: #3f7a4a !important;
+}
+
+.navbar .nav-link,
+.navbar .navbar-brand {
+  color: #fff !important;
+  transition: color 0.3s ease;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: #e0e0e0 !important;
+}
+
+
+
+.navbar .nav-link, .navbar .navbar-brand {
+    color: #fff !important;
+}
+
+.navbar .nav-link:hover, .navbar .nav-link.active {
+    color: #e0e0e0 !important;
+}
+
