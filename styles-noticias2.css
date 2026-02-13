@@ -180,10 +180,11 @@ a {
     border-bottom: 1px solid #e9ecef;
 }
 
+
 .divider {
     height: 4px;
     width: 60px;
-    background-color: #198754; /* Verde Bootstrap/Clube */
+    background-color: #333; /* Verde Bootstrap/Clube */
     border-radius: 2px;
 }
 
