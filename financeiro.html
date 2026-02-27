@@ -186,103 +186,145 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="main.js" ></script>
     <script>
-        // 1. Verificar Login
-        const user = JSON.parse(localStorage.getItem('utilizador'));
-    
-        if (!user) {
-            window.location.href = 'login.html'; 
-        }
+       // 1. SEGURANÇA E DADOS DO USER
+const userStr = localStorage.getItem('utilizador');
+if (!userStr) window.location.href = 'login.html';
+
+const utilizador = JSON.parse(userStr);
+const container = document.getElementById('listaFaturas'); // ID principal da tua página de finanças
+let faturasCache = []; // Cache para o modal funcionar
+
+// 2. LÓGICA DE INICIALIZAÇÃO
+if (utilizador.tipo === 'encarregado') {
+    carregarSeletorFilhosFinancas();
+} else {
+    // Se for jogador, carrega logo as dele
+    carregarFaturas(utilizador.id);
+}
+
+// 3. FUNÇÃO PARA ENCARREGADOS ESCOLHEREM O FILHO (Layout idêntico às convocatórias)
+async function carregarSeletorFilhosFinancas() {
+    try {
+        const res = await fetch(`/api/meus-educandos?id=${utilizador.id}`);
+        const filhos = await res.json();
         
-        // Colocar nome na barra
-        document.getElementById('nomeUser').innerText = user.nome.split(' ')[0];
+        // Limpa o container e coloca os botões (fazendo o seletor aparecer)
+        container.innerHTML = `
+            <div class="col-12 text-center mb-4">
+                <h5><i class="fa-solid fa-users"></i> Selecione o seu educando para ver os pagamentos:</h5>
+                <div id="botoesFilhos" class="mt-3"></div>
+            </div>`;
+        
+        const divBotoes = document.getElementById('botoesFilhos');
+        filhos.forEach(filho => {
+            divBotoes.innerHTML += `
+                <button class="btn btn-outline-success btn-lg m-2" onclick="carregarFaturas(${filho.id}, '${filho.nome}')">
+                    <i class="fa-solid fa-user"></i> ${filho.nome}
+                </button>`;
+        });
+    } catch (err) {
+        container.innerHTML = '<p class="text-danger">Erro ao carregar lista de filhos.</p>';
+    }
+}
 
-        // Função Sair
-        function sair() { 
-            localStorage.removeItem('utilizador'); 
-            window.location.href = 'login.html'; 
+// 4. FUNÇÃO QUE CARREGA AS FATURAS (Substitui o seletor pelo conteúdo)
+async function carregarFaturas(idAtleta, nomeFilho = "") {
+    // Mostra loading e limpa o seletor (fazendo-o desaparecer)
+    container.innerHTML = '<div class="text-center w-100 py-5"><div class="spinner-border text-success"></div></div>';
+    
+    try {
+        const res = await fetch(`/api/minhas-faturas?id=${idAtleta}&v=${Math.random()}`);
+        faturasCache = await res.json();
+        
+        // Se houver nomeFilho, mostra o cabeçalho com o botão VOLTAR
+        container.innerHTML = nomeFilho ? `
+            <div class="col-12 mb-4 d-flex justify-content-between align-items-center">
+                <h4>Pagamentos de: <span class="text-success">${nomeFilho}</span></h4>
+                <button class="btn btn-sm btn-secondary" onclick="carregarSeletorFilhosFinancas()">
+                    <i class="fa-solid fa-arrow-left"></i> Voltar
+                </button>
+            </div>` : '';
+
+        if (faturasCache.length === 0) {
+            container.innerHTML += `
+                <div class="col-12 text-center py-5">
+                    <i class="fa-solid fa-folder-open fa-3x mb-3 text-muted"></i>
+                    <p class="text-muted">Não existem pagamentos registados para este perfil.</p>
+                </div>`;
+            return;
         }
 
-        let faturasCache = [];
+        // Renderiza os cards das faturas
+        faturasCache.forEach((f, index) => {
+            const d = new Date(f.data_emissao);
+            const meses = ["JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"];
+            const dataFormatada = `${d.getDate()} ${meses[d.getMonth()]}`;
 
-        // 2. Carregar Faturas
-        async function carregarFaturas() {
-            try {
-                const res = await fetch(`/api/minhas-faturas?id=${user.id}&v=${Math.random()}`);
-                faturasCache = await res.json();
-                const container = document.getElementById('listaFaturas');
-                
-                container.innerHTML = ''; 
+            container.innerHTML += `
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="fatura-card" onclick="abrirFatura(${index})">
+                        <i class="fa-solid fa-file-invoice card-icon"></i>
+                        <div class="fatura-info">
+                            <span class="badge bg-success mb-2">PAGO</span>
+                            <h4>${f.descricao}</h4>
+                            <p><i class="fa-regular fa-calendar"></i> ${dataFormatada} - ${d.getFullYear()}</p>
+                        </div>
+                        <div class="fatura-valor">${f.valor_total}€</div>
+                    </div>
+                </div>`;
+        });
+    } catch (error) {
+        container.innerHTML = '<div class="alert alert-danger">Erro ao carregar dados financeiros.</div>';
+    }
+}
 
-                if(faturasCache.length === 0) {
-                    container.innerHTML = `
-                        <div class="col-12 text-center py-5">
-                            <i class="fa-solid fa-folder-open" style="font-size:3rem; margin-bottom:15px; color:#ccc;"></i>
-                            <p class="text-muted">Não existem pagamentos registados.</p>
-                        </div>`;
-                } else {
-                    container.innerHTML = faturasCache.map((f, index) => {
-                        const d = new Date(f.data_emissao);
-                        const meses = ["JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"];
-                        const dataFormatada = `${d.getDate()} ${meses[d.getMonth()]}`;
+// 5. FUNÇÕES DO MODAL (Mantidas para os detalhes)
+function abrirFatura(index) {
+    const f = faturasCache[index];
+    let valorBanco = (f.metodo_pagamento || "").toString().toLowerCase();
+    let textoMetodo = "";
 
-                        return `
-                        <div class="col-md-6 col-lg-4 mb-4">
-                            <div class="fatura-card" onclick="abrirFatura(${index})">
-                                <i class="fa-solid fa-file-invoice card-icon"></i>
-                                <div class="fatura-info">
-                                    <span class="badge bg-success mb-2" style="font-weight:normal; font-size:0.75rem">PAGO</span>
-                                    <h4>${f.descricao}</h4>
-                                    <p><i class="fa-regular fa-calendar"></i> ${dataFormatada} - ${d.getFullYear()}</p>
-                                </div>
-                                <div class="fatura-valor">${f.valor_total}€</div>
-                            </div>
-                        </div>`;
-                    }).join('');
-                }
-            } catch (error) {
-                console.error(error);
-                document.getElementById('listaFaturas').innerHTML = '<p class="text-center text-danger">Erro ao carregar faturas.</p>';
-            }
-        }
+    if (valorBanco.includes('transfer')) {
+        textoMetodo = 'Transferência <i class="fa-solid fa-building-columns" style="color:#007bff; margin-left:5px;"></i>';
+    } else if (valorBanco.includes('dinheiro') || valorBanco.includes('numerario')) {
+        textoMetodo = 'Dinheiro <i class="fa-solid fa-money-bill-wave" style="color:#28a745; margin-left:5px;"></i>';
+    } else if (valorBanco.includes('mbway') || valorBanco.includes('mb way')) {
+        textoMetodo = 'MBWAY <i class="fa-solid fa-mobile-screen-button" style="color:#e6007e; margin-left:5px;"></i>';
+    } else {
+        textoMetodo = f.metodo_pagamento || '<span style="color:#999; font-style:italic;">Não especificado</span>';
+    }
 
-        // 3. Abrir Detalhes (COM MBWAY ADICIONADO)
-        function abrirFatura(index) {
-            const f = faturasCache[index];
-            
-            let valorBanco = (f.metodo_pagamento || "").toString().toLowerCase();
-            let textoMetodo = "";
+    const dEmissao = new Date(f.data_emissao).toLocaleDateString('pt-PT');
+    const dPag = f.data_pagamento ? new Date(f.data_pagamento).toLocaleDateString('pt-PT') : '<span style="color:orange">Pendente</span>';
 
-            if (valorBanco.includes('transfer')) {
-                textoMetodo = 'Transferência <i class="fa-solid fa-building-columns" style="color:#007bff; margin-left:5px;"></i>';
-            } 
-            else if (valorBanco.includes('dinheiro') || valorBanco.includes('numerario')) {
-                textoMetodo = 'Dinheiro <i class="fa-solid fa-money-bill-wave" style="color:#28a745; margin-left:5px;"></i>';
-            }
-            // --- NOVO BLOCO MBWAY ---
-            else if (valorBanco.includes('mbway') || valorBanco.includes('mb way')) {
-                textoMetodo = 'MBWAY <i class="fa-solid fa-mobile-screen-button" style="color:#e6007e; margin-left:5px;"></i>';
-            }
-            // ------------------------
-            else if (valorBanco === "") {
-                textoMetodo = '<span style="color:#999; font-style:italic;">Não especificado</span>';
-            } 
-            else {
-                textoMetodo = f.metodo_pagamento;
-            }
+    document.getElementById('modReciboTitulo').innerText = "Recibo: " + (f.numero_recibo || "S/N");
+    document.getElementById('modConteudo').innerHTML = `
+        <div class="recibo-row"><span>Data Emissão:</span> <b>${dEmissao}</b></div>
+        <div class="recibo-row"><span>Contribuinte:</span> <span>${f.nif_jogador || 'N/A'}</span></div>
+        <hr>
+        <div class="recibo-row"><span>Desconto:</span> <span>${f.valor_desconto}€</span></div>
+        <div class="recibo-row"><span>Valor Base:</span> <span>${f.valor_base}€</span></div>
+        <div class="recibo-row"><span>IVA:</span> <span>${f.valor_iva}€</span></div>
+        <div class="recibo-row total"><span>TOTAL:</span> <span style="color:#198754">${f.valor_total}€</span></div>
+        <hr>
+        <div style="background:#eee; padding:10px; border-radius:5px; margin-top:10px;">
+            <div style="font-size:0.8em; font-weight:bold; color:#555; text-transform:uppercase;">Dados Pagamento</div>
+            <div class="recibo-row"><span>Data Pag:</span> <span>${dPag}</span></div>
+            <div class="recibo-row"><span>Método:</span> <span>${textoMetodo}</span></div>
+            ${f.nota_pagamento ? `<div style="margin-top:5px; font-size:0.8em; color:#666;">Obs: ${f.nota_pagamento}</div>` : ''}
+        </div>`;
+    document.getElementById('modalFatura').style.display = 'flex';
+}
 
-            const dEmissao = new Date(f.data_emissao).toLocaleDateString('pt-PT');
-            const dPag = f.data_pagamento ? new Date(f.data_pagamento).toLocaleDateString('pt-PT') : '<span style="color:orange">Pendente</span>';
-
-            document.getElementById('modReciboTitulo').innerText = "Recibo: " + (f.numero_recibo || "S/N");
-            
-            document.getElementById('modConteudo').innerHTML = `
+function fecharModal() { document.getElementById('modalFatura').style.display = 'none'; }
+/*document.getElementById('modConteudo').innerHTML = `
                 <div class="recibo-row"><span>Data Emissão:</span> <b>${dEmissao}</b></div>
                 <div class="recibo-row"><span>Contribuinte:</span> <span>${f.nif_jogador || 'N/A'}</span></div>
                 <hr>
-                <div class="recibo-row"><span>Descrição:</span> <span>${f.descricao}</span></div>
+                <div class="recibo-row"><span>Desconto:</span> <span>${f.valor_desconto}</span></div>
                 <div class="recibo-row"><span>Valor Base:</span> <span>${f.valor_base}€</span></div>
                 <div class="recibo-row"><span>IVA:</span> <span>${f.valor_iva}€</span></div>
-                <div class="recibo-row total"><span>TOTAL PAGO:</span> <span style="color:#198754">${f.valor_total}€</span></div>
+                <div class="recibo-row total"><span>TOTAL:</span> <span style="color:#198754">${f.valor_total}€</span></div>
                 <hr>
                 <div style="background:#eee; padding:10px; border-radius:5px; margin-top:10px;">
                     <div style="font-size:0.8em; font-weight:bold; color:#555; text-transform:uppercase;">Dados Pagamento</div>
@@ -290,13 +332,7 @@
                     <div class="recibo-row"><span>Método:</span> <span>${textoMetodo}</span></div>
                     ${f.nota_pagamento ? `<div style="margin-top:5px; font-size:0.8em; color:#666;">Obs: ${f.nota_pagamento}</div>` : ''}
                 </div>
-            `;
-            document.getElementById('modalFatura').style.display = 'flex';
-        }
-
-        function fecharModal() { document.getElementById('modalFatura').style.display = 'none'; }
-        
-        carregarFaturas();
+            `;*/
     </script>
 </body>
 </html>

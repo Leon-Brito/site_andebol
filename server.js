@@ -178,6 +178,67 @@ app.post('/api/convocatoria', (req, res) => {
         }
     });
 });
+// ASSOCIAÇÃO: Ligar Encarregado ao Jogador
+app.post('/api/associar-educando', (req, res) => {
+    const { id_encarregado, id_jogador } = req.body;
+
+    const sql = "INSERT INTO encarregados_jogadores (id_encarregado, id_jogador) VALUES (?, ?)";
+    
+    connection.query(sql, [id_encarregado, id_jogador], (err, result) => {
+        if (err) {
+            if (err.code === 'ER_DUP_ENTRY') {
+                return res.status(400).json({ erro: "Esta ligação já existe!" });
+            }
+            return res.status(500).json({ erro: err.message });
+        }
+        res.json({ mensagem: "Jogador associado com sucesso ao encarregado!" });
+    });
+});
+
+// LISTAR ENCARREGADOS (Para preencher um select no Admin)
+app.get('/api/encarregados', (req, res) => {
+    connection.query("SELECT id, nome FROM utilizadores WHERE tipo = 'encarregado'", (err, rows) => {
+        if (err) return res.status(500).json(err);
+        res.json(rows);
+    });
+});
+
+// --- API: OBTER OS JOGADORES DO ENCARREGADO ---
+app.get('/api/meus-educandos', (req, res) => {
+    const idEncarregado = req.query.id;
+    const sql = `
+        SELECT u.id, u.nome 
+        FROM utilizadores u
+        JOIN encarregados_jogadores ej ON u.id = ej.id_jogador
+        WHERE ej.id_encarregado = ?
+    `;
+    connection.query(sql, [idEncarregado], (err, results) => {
+        if (err) return res.status(500).json(err);
+        res.json(results);
+    });
+});
+
+// Listar apenas quem é Encarregado
+app.get('/api/encarregados', (req, res) => {
+    connection.query("SELECT id, nome FROM utilizadores WHERE tipo = 'encarregado' ORDER BY nome ASC", (err, rows) => {
+        if (err) return res.status(500).json(err);
+        res.json(rows);
+    });
+});
+
+// A Rota que faz a gravação na tabela de ligação
+app.post('/api/associar-familia', (req, res) => {
+    const { id_encarregado, id_jogador } = req.body;
+    const sql = "INSERT INTO encarregados_jogadores (id_encarregado, id_jogador) VALUES (?, ?)";
+    
+    connection.query(sql, [id_encarregado, id_jogador], (err, result) => {
+        if (err) {
+            if (err.code === 'ER_DUP_ENTRY') return res.status(400).json({ erro: "Esta ligação já existe!" });
+            return res.status(500).json({ erro: err.message });
+        }
+        res.json({ mensagem: "Ligação criada com sucesso!" });
+    });
+});
 
 // --- API: OBTER A ÚLTIMA CONVOCATÓRIA ---
 // --- API: OBTER PRÓXIMOS JOGOS (Lista) ---
@@ -186,11 +247,11 @@ app.post('/api/convocatoria', (req, res) => {
 app.get('/api/meus-jogos', (req, res) => {
     const idJogador = req.query.id;
     const sql = `
-        SELECT c.* FROM convocatorias c
-        JOIN convocados cv ON c.id = cv.id_convocatoria
-        WHERE cv.id_jogador = ? AND c.data_jogo >= NOW()
-        ORDER BY c.data_jogo ASC
-    `;
+    SELECT c.* FROM convocatorias c
+    JOIN convocados cv ON c.id = cv.id_convocatoria
+    WHERE cv.id_jogador = ? 
+    ORDER BY c.data_jogo DESC
+`;
     connection.query(sql, [idJogador], (err, rows) => res.json(rows));
 });
 // --- TESTE DE LIGAÇÃO ---

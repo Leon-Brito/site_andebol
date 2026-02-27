@@ -208,6 +208,7 @@
                                 <select id="novoTipo" class="form-select" onchange="toggleEscaloes()">
                                     <option value="jogador">Jogador (Atleta)</option>
                                     <option value="admin">Administrador</option>
+                                    <option value="encarregado">Encarregado de Educação</option>
                                 </select>
                             </div>
                             
@@ -287,7 +288,35 @@
                     </div>
                 </div>
             </div>
-
+            <div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0"><i class="fas fa-link"></i> Associar Encarregado a Jogador</h4>
+        </div>
+        <div class="card-body">
+            <form id="formAssoc">
+                <div class="row">
+                    <div class="col-md-5 mb-3">
+                        <label class="form-label">Selecionar Encarregado:</label>
+                        <select id="selectEncarregado" class="form-select" required>
+                            <option value="">Carregando...</option>
+                        </select>
+                    </div>
+                    <div class="col-md-5 mb-3">
+                        <label class="form-label">Selecionar Jogador:</label>
+                        <select id="selectJogador" class="form-select" required>
+                            <option value="">Carregando...</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 mb-3 d-flex align-items-end">
+                        <button type="submit" class="btn btn-success w-100">Associar</button>
+                    </div>
+                </div>
+            </form>
+            <div id="msgAssoc" class="mt-2"></div>
+        </div>
+    </div>
+</div>
             
 
             <div class="col-12 mb-4">
@@ -438,6 +467,58 @@
                 }
             }
         }
+        // 1. Carregar os Encarregados e Jogadores nos Selects
+async function carregarListasAssoc() {
+    try {
+        // Buscar Encarregados
+        const resEnc = await fetch('/api/encarregados');
+        const encarregados = await resEnc.json();
+        const selectEnc = document.getElementById('selectEncarregado');
+        selectEnc.innerHTML = '<option value="">Escolha um Encarregado</option>';
+        encarregados.forEach(e => selectEnc.innerHTML += `<option value="${e.id}">${e.nome}</option>`);
+
+        // Buscar Jogadores (podes aproveitar a rota que já tens)
+        const resJog = await fetch('/api/jogadores-completo');
+        const jogadores = await resJog.json();
+        const selectJog = document.getElementById('selectJogador');
+        selectJog.innerHTML = '<option value="">Escolha um Jogador</option>';
+        jogadores.forEach(j => selectJog.innerHTML += `<option value="${j.id}">${j.nome}</option>`);
+    } catch (err) {
+        console.error("Erro ao carregar listas:", err);
+    }
+}
+
+// 2. Evento de Submissão do Formulário
+document.getElementById('formAssoc').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const msg = document.getElementById('msgAssoc');
+    
+    const dados = {
+        id_encarregado: document.getElementById('selectEncarregado').value,
+        id_jogador: document.getElementById('selectJogador').value
+    };
+
+    try {
+        const res = await fetch('/api/associar-familia', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dados)
+        });
+
+        const resultado = await res.json();
+        if (res.ok) {
+            msg.innerHTML = `<div class="alert alert-success">${resultado.mensagem}</div>`;
+            e.target.reset();
+        } else {
+            msg.innerHTML = `<div class="alert alert-danger">${resultado.erro}</div>`;
+        }
+    } catch (err) {
+        msg.innerHTML = `<div class="alert alert-danger">Erro de ligação ao servidor.</div>`;
+    }
+});
+
+// Chamar a função ao carregar a página
+carregarListasAssoc();
         
         function atualizarDropdowns() {
             // Dropdown Faturas
@@ -569,22 +650,62 @@
         }
 
         async function lancarFatura() {
-            const sel = document.getElementById('fatSelectJogador');
-            const dados = {
-                numero_recibo: document.getElementById('fatRecibo').value,
-                data_emissao: document.getElementById('fatDataEmissao').value,
-                id_jogador: sel.value,
-                // ... restantes campos
-            };
+    const sel = document.getElementById('fatSelectJogador');
+    
+    // Validação básica
+    if (!sel.value) return alert("Por favor, selecione um atleta.");
+    if (!document.getElementById('fatRecibo').value) return alert("Insira o número do recibo.");
+
+    const dados = {
+        id_jogador: sel.value,
+        numero_recibo: document.getElementById('fatRecibo').value,
+        data_emissao: document.getElementById('fatDataEmissao').value,
+        descricao: document.getElementById('fatDescricao').value,
+        valor_base: document.getElementById('fatBase').value || 0,
+        valor_iva: document.getElementById('fatIva').value || 0,
+        valor_total: document.getElementById('fatTotal').value,
+        valor_desconto: document.getElementById('fatDesc').value || 0,
+        data_pagamento: document.getElementById('fatDataPag').value || null,
+        metodo_pagamento: document.getElementById('fatMetodo').value,
+        nota_pagamento: document.getElementById('fatNota').value,
+        nif_jogador: document.getElementById('fatNif').value // Guardamos o NIF na fatura para histórico
+    };
+    
+    try {
+        const res = await fetch('/api/faturas', { 
+            method: 'POST', 
+            headers: {'Content-Type': 'application/json'}, 
+            body: JSON.stringify(dados)
+        });
+        
+        const json = await res.json();
+        
+        if (res.ok) {
+            alert("✅ Fatura emitida com sucesso!");
+            // Limpar formulário (opcional)
+            document.getElementById('fatRecibo').value,
+         document.getElementById('fatDataEmissao').value,
+         document.getElementById('fatDescricao').value,
+         document.getElementById('fatBase').value || 0,
+         document.getElementById('fatIva').value || 0,
+         document.getElementById('fatTotal').value = '0.00';
+         document.getElementById('fatDesc').value = '0.00';
+         document.getElementById('fatDataPag').value = '';
+         document.getElementById('fatMetodo').value = '';
+         document.getElementById('fatNota').value = '';
+         document.getElementById('fatNif').value = '';
+         document.getElementById('fatMorada').value = '';
+         document.getElementById('fatSelectJogador').value = "";
             
-            try {
-                const res = await fetch('/api/faturas', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(dados)});
-                const json = await res.json();
-                alert(json.mensagem);
-            } catch (error) {
-                alert("Erro ao emitir fatura");
-            }
+         
+        } else {
+            alert("❌ Erro: " + json.erro);
         }
+    } catch (error) {
+        console.error(error);
+        alert("Erro crítico ao ligar ao servidor.");
+    }
+}
     </script>
     
 </body>

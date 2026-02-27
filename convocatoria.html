@@ -108,85 +108,88 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="main.js"></script>
     <script>
-        // 1. SEGURANÇA: Verificar se está logado
-        const userStr = localStorage.getItem('utilizador');
+    // 1. SEGURANÇA E DADOS DO USER
+const userStr = localStorage.getItem('utilizador');
+if (!userStr) {
+    window.location.href = 'login.html?destino=convocatoria.html';
+}
+
+const utilizador = JSON.parse(userStr);
+const container = document.getElementById('listaJogos');
+
+// 2. LÓGICA DE INICIALIZAÇÃO
+if (utilizador.tipo === 'encarregado') {
+    carregarSeletorFilhos();
+} else {
+    // Se for jogador, carrega logo os dele
+    carregarConvocatorias(utilizador.id);
+}
+
+// 3. FUNÇÃO PARA ENCARREGADOS ESCOLHEREM O FILHO
+async function carregarSeletorFilhos() {
+    try {
+        const res = await fetch(`/api/meus-educandos?id=${utilizador.id}`);
+        const filhos = await res.json();
         
-        if (!userStr) {
-            window.location.href = 'login.html?destino=convocatoria.html'; 
-        } else {
-            const utilizador = JSON.parse(userStr);
-            
-            // Põe o nome no cabeçalho
-            const spanNome = document.getElementById('nomeUser');
-            if(spanNome) {
-                spanNome.innerText = utilizador.nome.split(' ')[0];
-            }
+        container.innerHTML = `
+            <div class="col-12 text-center mb-4">
+                <h5><i class="fa-solid fa-users"></i> Selecione o seu educando para ver as convocatórias:</h5>
+                <div id="botoesFilhos" class="mt-3"></div>
+            </div>`;
+        
+        const divBotoes = document.getElementById('botoesFilhos');
+        filhos.forEach(filho => {
+            divBotoes.innerHTML += `
+                <button class="btn btn-outline-success btn-lg m-2" onclick="carregarConvocatorias(${filho.id}, '${filho.nome}')">
+                    <i class="fa-solid fa-user"></i> ${filho.nome}
+                </button>`;
+        });
+    } catch (err) {
+        container.innerHTML = '<p class="text-danger">Erro ao carregar lista de filhos.</p>';
+    }
+}
 
-            
+// 4. FUNÇÃO QUE CARREGA OS JOGOS (A mesma para ambos)
+async function carregarConvocatorias(idAtleta, nomeFilho = "") {
+    container.innerHTML = '<div class="text-center"><div class="spinner-border text-success"></div></div>';
+    
+    try {
+        const res = await fetch(`/api/meus-jogos?id=${idAtleta}`);
+        const jogos = await res.json();
+        
+        container.innerHTML = nomeFilho ? `<div class="col-12 mb-3"><h4>Convocatórias de: <span class="text-success">${nomeFilho}</span></h4><button class="btn btn-sm btn-secondary" onclick="carregarSeletorFilhos()">Voltar</button></div>` : '';
 
-            // Carrega os jogos
-            carregarConvocatorias(utilizador.id);
+        if (jogos.length === 0) {
+            container.innerHTML += '<div class="col-12 text-center py-5"><h4>Sem jogos agendados</h4></div>';
+            return;
         }
 
-        // Função Sair
-        function sair() { 
-            localStorage.removeItem('utilizador'); 
-            window.location.href = 'login.html'; 
-        }
-
-        // 3. CARREGAR JOGOS DA API
-        async function carregarConvocatorias(idAtleta) {
-            const container = document.getElementById('listaJogos');
-            try {
-                const res = await fetch(`/api/meus-jogos?id=${idAtleta}`);
-                if (!res.ok) throw new Error('Erro na resposta do servidor');
-
-                const jogos = await res.json();
-                container.innerHTML = '';
-
-                if (jogos.length === 0) {
-                    container.innerHTML = `
-                        <div class="col-12 empty-state text-center py-5">
-                            <i class="fa-regular fa-calendar-xmark" style="font-size:3rem; margin-bottom:15px; color:#ccc;"></i>
-                            <h4>Sem jogos agendados</h4>
-                            <p class="text-muted">Não existem convocatórias ativas para ti neste momento.</p>
-                        </div>`;
-                    return;
-                }
-
-                jogos.forEach(jogo => {
-                    const d = new Date(jogo.data_jogo);
-                    const meses = ["JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"];
-                    const horaStr = d.toLocaleTimeString('pt-PT', { hour: '2-digit', minute: '2-digit' });
-
-                    container.innerHTML += `
-                        <div class="col-md-6 mb-4">
-                            <div class="card-jogo">
-                                <div class="card-top">
-                                    <span><i class="fa-solid fa-trophy"></i> JOGO OFICIAL</span>
-                                    <span class="badge bg-dark text-warning">${jogo.escalao || "Geral"}</span>
-                                </div>
-                                <div class="card-body-jogo">
-                                    <div class="jogo-versus">
-                                        <span class="text-success">ACO</span>
-                                        <span style="color:#ddd; font-size:0.9rem;">VS</span>
-                                        <span class="text-dark">${jogo.jogo_contra || "A definir"}</span>
-                                    </div>
-                                    <hr style="opacity:0.1">
-                                    <div class="jogo-info-grid">
-                                        <div><span class="info-label">Data</span><div><i class="fa-regular fa-calendar"></i> ${d.getDate()} ${meses[d.getMonth()]}</div></div>
-                                        <div><span class="info-label">Hora</span><div><i class="fa-regular fa-clock"></i> ${horaStr}</div></div>
-                                        <div style="grid-column: 1 / -1;"><span class="info-label">Local</span><div class="text-danger"><i class="fa-solid fa-location-dot"></i> ${jogo.local || "Pavilhão Municipal"}</div></div>
-                                    </div>
-                                </div>
+        jogos.forEach(jogo => {
+            const d = new Date(jogo.data_jogo);
+            container.innerHTML += `
+                <div class="col-md-6 mb-4">
+                    <div class="card-jogo">
+                        <div class="card-top">
+                            <span><i class="fa-solid fa-trophy"></i> JOGO OFICIAL</span>
+                            <span class="badge bg-dark text-warning">${jogo.escalao || "Geral"}</span>
+                        </div>
+                        <div class="card-body-jogo">
+                            <div class="jogo-versus text-center">
+                                <span class="text-success">ACO</span> VS <span class="text-dark">${jogo.jogo_contra}</span>
                             </div>
-                        </div>`;
-                });
-            } catch (error) {
-                console.error(error);
-                container.innerHTML = `<div class="col-12 text-center text-danger mt-5">Erro ao carregar jogos.</div>`;
-            }
-        }
+                            <div class="jogo-info-grid mt-3">
+                                <div><small class="text-muted">Data</small><div>${d.toLocaleDateString()}</div></div>
+                                <div><small class="text-muted">Hora</small><div>${d.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div></div>
+                                <div style="grid-column: 1 / -1;"><small class="text-muted">Local</small><div>${jogo.local}</div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+        });
+    } catch (error) {
+        container.innerHTML = '<div class="alert alert-danger">Erro ao carregar dados.</div>';
+    }
+}
     </script>
 </body>
 </html>
