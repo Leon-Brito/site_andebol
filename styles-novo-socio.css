@@ -1,44 +1,25 @@
-:root{
-  --green: #2f7a34;
-  --green-dark: #235d28;
-  --muted: #6b6b6b;
-  --max-width: 1120px;
-  --gutter: 24px;
-  --radius: 6px;
-}
-
-/* Reset/Base */
-*{box-sizing: border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  color:#222;
-  background:#fff;
-  line-height:1.6;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-}
-
-/* ================================= RESET E BASE ================================== */
-body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, figure {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+:root {
+    --primary-green: #2f7a34;
+    --accent-yellow: #ffcc00;
+    --dark-overlay: rgba(0, 0, 0, 0.03);
+    --glass-white: rgba(255, 255, 255, 0.95);
+    --brand-color-primary: #3f7a4a;
+    --brand-color-primary-darker-1: #356437;
+    --brand-color-secondary: #3f7a4a;
+    --badge-width: 90px;
+    --badge-height: 90px;
 }
 
 body {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background-color: #fff;
+    background: #f0f2f5;
+    background-image: 
+        radial-gradient(at 0% 0%, rgba(47, 122, 52, 0.1) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(255, 204, 0, 0.1) 0px, transparent 50%);
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
 }
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
 /* ================================= CABEÇALHO ================================= */
 #header {
     padding: 1rem 0;
@@ -85,210 +66,120 @@ a {
     color: #e0e0e0 !important;
 }
 
-#btn-envi{
-    background-color: #356437;
+
+/* Content Container */
+#content.layout1 {
+  width: 100%;
+    padding: 40px 0;
 }
-/* Opcional: Para alinhar o texto com a imagem e formulário */
-#content {
-    padding-top: 20px;
+
+.wrapper {
+  width: 95%;
+    max-width: 100%;
+    margin: 0 auto;
 }
-/* Navbar override leve para Bootstrap 5 */
-.navbar.bg-success { background-color: var(--brand-color-primary) !important; }
-.navbar .nav-link, .navbar .navbar-brand { color: #fff !important; }
-.navbar .nav-link:hover, .navbar .nav-link.active { color: #e0e0e0 !important; }
 
-/* Layout containers: mantenho .wrapper de forma não intrusiva */
-.container .wrapper { margin: 0; }
-
-/* Item image */
-.item-image img { max-width: 100%; height: auto; display:block; margin-bottom: 1rem; }
-
-/* Members form styling (não altera estrutura) */
+/* Cartão do Formulário */
 .members_form {
-  background: #ffffff;
-  padding: 1rem;
-  border-radius: 6px;
+    
+    width: 100%;
+    height: auto;
+    background: var(--glass-white) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 24px;
+    padding: 50px !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
 }
 
-.members_form .block-header { margin-bottom: 1rem; }
-.members_form .block-title { color: var(--brand-color-primary); font-weight: 600; }
-
-.members_form .form-control,
-.members_form .form-select {
-  border-radius: 4px;
-  height: calc(1.6rem + 1rem);
-  padding: .5rem .625rem;
+/* Cabeçalho do Bloco */
+.block-header {
+    text-align: center;
+    margin-bottom: 40px;
 }
 
-.members_form .form-check-input { margin-top: .35rem; }
-
-/* Captcha */
-.captcha { display:inline-block; max-height:40px; }
-
-/* Sponsors */
-.sponsors-grid img { max-width:100%; height:auto; }
-
-/* Footer */
-
-
-/* Responsividade */
-@media (max-width: 768px) {
-    .footer-content {
-        flex-direction: column;
-        gap: 15px;
-    }
+.block-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    letter-spacing: -1px;
+    position: relative;
+    display: inline-block;
 }
 
-/* Responsividade (mantive os breakpoints do original) */
-@media (max-width: 992px) {
-  /* somente ajustes visuais, sem mudar layout */
-  .members_form { padding: .75rem; }
+.block-title::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 25%;
+    width: 50%;
+    height: 4px;
+    background: var(--primary-green);
+    border-radius: 2px;
 }
 
-@media (max-width: 480px) {
-  .members_form .form-control { font-size: 0.95rem; }
-}
-/* Header principal */
-.header1{
-  background:#fff;
-  border-bottom: 4px solid var(--green);
-}
-#header-content{
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 14px var(--gutter);
-  align-items:center;
+/* Campos de Input */
+.form-group label {
+    font-weight: 600;
+    color: #4a5568;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
 }
 
-/* Branding */
-#branding { display:flex; align-items:center; gap:16px; }
-.club-badge img{ width:90px; height:90px; object-fit:cover; border-radius:50%; box-shadow:0 4px 10px rgba(0,0,0,0.06); }
-.club-name{
-  color: var(--green-dark);
-  font-weight:700;
-  line-height:1;
-}
-.club-name .site-slogan{
-  color: var(--muted);
-  font-weight:600;
-  letter-spacing:0.2px;
+.form-control, .form-select {
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+    padding: 12px 16px !important;
+    background: #fff !important;
+    transition: all 0.2s ease;
 }
 
-/* Social icons */
-.template-block.socialmedia_icons .icons a{
-  color: var(--green-dark);
-  text-decoration:none;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  width:34px;
-  height:34px;
-  border-radius:4px;
-}
-.template-block.socialmedia_icons .icons a:hover{
-  color:#fff;
-  background:var(--green-dark);
+.form-control:focus {
+    border-color: var(--primary-green) !important;
+    box-shadow: 0 0 0 4px rgba(47, 122, 52, 0.1) !important;
+    transform: translateY(-1px);
 }
 
-/* Navbar override (uses bootstrap classes but fine-tune) */
-.navbar{
-  box-shadow:0 2px 6px rgba(0,0,0,0.06);
-  border-top:4px solid var(--green);
-}
-.navbar .nav-link{
-  color:#fff;
-  font-weight:600;
-}
-.navbar .nav-link:hover,
-.navbar .nav-link:focus { color:#e6f3ea; }
-.img-responsive{ max-width:100%; height:auto; display:block; }
-
-
-
-#branding .club-badge img {
-  width: 90px;
-  height: 90px;
-  object-fit: contain;
-  display: block;
+/* Secção do Captcha */
+.captcha-container {
+    background: #f8fafc;
+    padding: 20px;
+    border-radius: 16px;
+    border: 1px dashed #cbd5e0;
 }
 
-/* ================================
-   HEADER
-   ================================ */
-#header .club-name {
-  color: #3f7a4a;
-  font-weight: 600;
+/* Botão de Envio */
+#btn-envi {
+    background: linear-gradient(135deg, var(--primary-green) 0%, #1e5222 100%) !important;
+    border: none !important;
+    color: white !important;
+    width: 100%;
+    padding: 18px;
+    border-radius: 14px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-#header .site-slogan {
-  font-size: 0.85rem;
-  color: #666;
+#btn-envi:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(47, 122, 52, 0.3);
 }
 
-/* ================================
-   SOCIAL MEDIA ICONS
-   ================================ */
-.socialmedia_icons a {
-  color: #3f7a4a;
-  transition: color 0.3s ease;
+/* Checkbox */
+.form-check {
+    padding: 15px 15px 15px 35px;
+    border-radius: 10px;
+    transition: background 0.2s;
 }
 
-.socialmedia_icons a:hover {
-  color: #356437;
-
-  
+.form-check:hover {
+    background: rgba(0,0,0,0.02);
 }
-#branding .club-badge img {
-    width: 90px;
-    height: 90px;
-    object-fit: contain;
+.main-footer {
+    border-top: 5px solid #198754;
 }
-
-#header .club-name {
-    color: #3f7a4a;
-}
-
-#header .site-slogan {
-    font-size: 0.85rem;
-    color: #666;
-}
-
-.socialmedia_icons a {
-    color: #3f7a4a;
-    transition: 0.3s;
-}
-
-.socialmedia_icons a:hover {
-    color: #356437;
-
-}
-
-/* ================================
-   NAVBAR
-   ================================ */
-.navbar.bg-success {
-
-  background-color: #3f7a4a !important;
-}
-
-.navbar .nav-link,
-.navbar .navbar-brand {
-  color: #fff !important;
-  transition: color 0.3s ease;
-}
-
-.navbar .nav-link:hover,
-.navbar .nav-link.active {
-  color: #e0e0e0 !important;
-}
-
-
-
-.navbar .nav-link, .navbar .navbar-brand {
-    color: #fff !important;
-}
-
-.navbar .nav-link:hover, .navbar .nav-link.active {
-    color: #e0e0e0 !important;
-}
-

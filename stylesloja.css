@@ -192,24 +192,63 @@ main {
 .product-stock.limited i, .product-stock.limitado i {
     background-color: orange;
 }
-#btn-envi{
-    background-color: #356437;
+#btn-envi {
+    background-color: #000; /* Preto para um look "Streetwear" ou var(--porto-blue) */
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 15px 30px;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-top: 10px;
+}
+
+#btn-envi:hover {
+    background-color: var(--brand-green);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para os Checkboxes sobre o fundo amarelo */
+.contacts_form .form-check-label {
+    color: #333;
+    font-size: 0.9rem;
 }
 /* =================================== FORMULÁRIO ================================== */
 .contacts_form {
-    background: #f9f9f9;
-    padding: 1.5rem;
-    border-radius: 8px;
-    border: 1px solid #ddd;
+    /* Um degradê moderno que mistura tons de amarelo e ouro */
+    background: linear-gradient(145deg, #ffeb3b, #fbc02d);
+    
+    padding: 40px;
+    border-radius: 20px; /* Cantos arredondados para um look mais amigável */
+    border: none;
+    box-shadow: 0 15px 35px rgba(251, 192, 45, 0.3); /* Sombra suave na cor do degradê */
+    color: #333; /* Texto escuro para contraste perfeito sobre o amarelo */
 }
 
 .contacts_form h4 {
-    color: var(--brand-color-primary);
-    margin-bottom: 1rem;
+    color: #000;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 10px;
+    letter-spacing: 1px;
 }
 
+/* Ajuste dos labels para garantir leitura sobre o amarelo */
 .contacts_form .form-label {
-    font-weight: 500;
+    font-weight: 600;
+    color: #222;
+}
+
+/* Campos de entrada com um toque de transparência branca para brilho */
+.contacts_form .form-control {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
 }
 
 .contacts_form .form-text {

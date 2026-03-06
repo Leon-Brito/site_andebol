@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notícias | Andebol Clube Olhão</title>
-   
-    <link rel="stylesheet" href="styles-noticias.css">
+    <title>Notícias - Andebol Clube Olhão</title>
+    
+    <link rel="stylesheet" href="styles-noticias2.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="icon" type="image/png" href="img/logo_9JToiDZ.png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
+
     <header id="header" class="header1">
         <div id="header-content" class="container d-flex justify-content-between align-items-center">
             <div id="branding" class="d-flex align-items-center">
@@ -72,7 +74,7 @@
                                 <li><a class="dropdown-item" href="equipas/baby.html">Baby</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item"><a href="noticias.html" class="nav-link">Notícias</a></li>
+                        <li class="nav-item"><a href="noticias.html" class="nav-link active">Notícias</a></li>
                         <li class="nav-item"><a href="../loja.html" class="nav-link">Loja</a></li>
                     </ul>
                 </div>
@@ -80,23 +82,132 @@
         </nav>
     </header>
 
-    <h1 class="aviso"><strong>Em Manutenção</strong></h1>
-    <!--<footer id="footer" class="bg-dark text-white py-4">
-  <div class="container d-flex justify-content-between">
-    <span>2025 © Andebol Clube Olhão</span>
-    <ul class="list-inline mb-0">
-      <li class="list-inline-item"><a href="index.html" class="text-white">Início</a></li>
-      <li class="list-inline-item"><a href="noticias.html" class="text-white">Notícias</a></li>
-      <li class="list-inline-item"><a href="loja.html" class="text-white">Loja</a></li>
-      <li class="list-inline-item"><a href="contactos.html" class="text-white">Contactos</a></li>
-    </ul>
-  </div>
-  <div class="text-center small mt-2">Criado por Leonardo Brito</div>
-</footer>-->
+    <section class="page-header-section">
+        <div class="container text-center">
+            <h1 class="display-5 fw-bold text-dark">Notícias do Clube</h1>
+            <div class="divider mx-auto"></div>
+            <p class="lead text-muted mt-2">Fica a par de tudo o que acontece no nosso universo.</p>
+        </div>
+    </section>
+
+    <main class="container news-container mb-5">
+        <div class="news-grid">
+            
+            <article class="news-card">
+                <div class="card-image-wrapper">
+                    <img src="img/noticias/andebol.jpg" alt="Minis Andebol">
+                    <span class="category-tag" style="background-color: #0066ff; color: #ffffff;">Homenagem</span>
+                </div>
+                <div class="card-content">
+                    <div class="meta-data">
+                        <i class="far fa-calendar-alt"></i> 05 JUN 2026
+                    </div>
+                    <h3>Andebol Clube Olhão promove Torneio de Veteranos Hélder Lemos</h3>
+                    <p>O Pavilhão Municipal de Olhão recebeu uma sentida homenagem a uma das grandes referências do andebol olhanense.</p>
+                    <div class="card-footer-custom">
+                        <a href="noticias/noticia-torneio-veteranos.html" class="btn-read-more">Ler Mais <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+            <article class="news-card">
+                <div class="card-image-wrapper">
+                    <img src="img/noticias/andebol-1.jpg" alt="Minis Andebol">
+                    <span class="category-tag" style="background-color: #ffc107; color: #000;">Torneio</span>
+                </div>
+                <div class="card-content">
+                    <div class="meta-data">
+                        <i class="far fa-calendar-alt"></i> 01 JUN 2024
+                    </div>
+                    <h3>Jovens andebolistas do Algarve e Alentejo marcam encontro em Olhão</h3>
+                    <p>Jovens andebolistas do Algarve e do Alentejo vão participar no Encontro Inter Regional de Minis Masculinos e Femininos, que na Escola João Lúcio, na Fuzeta, e no pavilhão dos Olhanenses, em Olhão, entre os dias 14 e 16 de Junho.</p>
+                    <div class="card-footer-custom">
+                        <a href="noticias/noticia-detalhe.html" class="btn-read-more">Ler Mais <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <div class="card-image-wrapper">
+                    <img src="img/noticias/Primavera-desportiva-Olhao.png" alt="Primavera Desportiva">
+                    <span class="category-tag">Evento</span>
+                </div>
+                <div class="card-content">
+                    <div class="meta-data">
+                        <i class="far fa-calendar-alt"></i> ABR 2024
+                    </div>
+                    <h3>Olhão vai pôr centenas a mexer na Primavera Desportiva</h3>
+                    <p>O Município de Olhão promove o evento Primavera Desportiva, com atividades para todos os gostos e idades, envolvendo os clubes locais.</p>
+                    <div class="card-footer-custom">
+                        <a href="noticias/noticia-primavera-desportiva.html" class="btn-read-more">Ler Mais <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <div class="card-image-wrapper">
+                    <img src="img/noticias/17.jpeg" alt="Formação">
+                    <span class="category-tag">Clube</span>
+                </div>
+                <div class="card-content">
+                    <div class="meta-data">
+                        <i class="far fa-calendar-alt"></i> SET 2022
+                    </div>
+                    <h3>AC Olhão prepara arranque da época para a formação</h3>
+                    <p>O clube prepara-se para iniciar mais uma época desportiva, focando-se na formação de atletas a partir dos 6 anos de idade.</p>
+                    <div class="card-footer-custom">
+                        <a href="noticias/arranque-epoca.html" class="btn-read-more">Ler Mais <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <div class="card-image-wrapper">
+                    <img src="img/noticias/Andebol-Clube-Olhao-3-860x484.jpg" alt="Solidariedade">
+                    <span class="category-tag" style="background-color: #e83e8c;">Solidariedade</span>
+                </div>
+                <div class="card-content">
+                    <div class="meta-data">
+                        <i class="far fa-calendar-alt"></i> OUT 2022
+                    </div>
+                    <h3>AC Olhão junta-se à causa do cancro da mama</h3>
+                    <p>Num gesto de solidariedade, o clube associa-se à prevenção e sensibilização para o cancro da mama, vestindo a camisola por esta causa.</p>
+                    <div class="card-footer-custom">
+                        <a href="noticias/cancro-mama.html" class="btn-read-more">Ler Mais <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <div class="card-image-wrapper">
+                    <img src="img/noticias/Torneio-860x484.jpg" alt="Torneio">
+                    <span class="category-tag" style="background-color: #ffc107; color: #000;">Torneio</span>
+                </div>
+                <div class="card-content">
+                    <div class="meta-data">
+                        <i class="far fa-calendar-alt"></i> JUN 2022
+                    </div>
+                    <h3>Torneio Inter-Regional de Minis encerra época</h3>
+                    <p>Um fim de semana de festa e competição marcou o encerramento da época desportiva para os escalões mais jovens em Olhão.</p>
+                    <div class="card-footer-custom">
+                        <a href="noticias/torneio-minis.html" class="btn-read-more">Ler Mais <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <footer class="main-footer bg-dark text-white py-4 mt-auto">
+        <div class="container text-center">
+            <div class="mb-3">
+                <img src="../img/logo_9JToiDZ.png" alt="AC Olhão" style="height: 50px; opacity: 0.8;">
+            </div>
+            <span>2025 © Andebol Clube Olhão</span>
+            <div class="text-center small mt-2">Criado por Leonardo Brito</div>
+        </div>
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script src="main.js"></script>
-
-
+    <script src="main.js"></script>
 </body>
 </html>
